@@ -1,31 +1,40 @@
-# Used to Bees 8-Track Jukebox v2
+# Used to Bees 8-Track Jukebox v2.1
 
-Upload this package into the existing `UsedToBeesPlayer` repository.
+This update adds the opening reunion countdown jingle.
 
-Root files:
+Playback order:
+
+1. The Used to Bees Reunion Countdown jingle
+2. The selected classmate's long-distance dedication
+3. 8-track ka-chunk and Program-number change
+4. The selected song
+
+## Upload to the existing repository
+
+Replace these root files:
+
 - index.html
-- styles.css
 - player.js
-- profiles.json
 - README.md
 
-Folders:
-- assets/player-bg.png
-- audio/dedications/JohnBerry.mp3
-- audio/dedications/BobMullen.mp3
-- audio/songs/Foghat-Slow-Ride.mp3
-- audio/songs/Kansas-Carry-On-Wayward-Son.mp3
+The existing `styles.css`, `profiles.json`, artwork, dedications, and songs do not need to change.
 
-Commit message:
-`Build Used to Bees 8-Track Jukebox v2`
+Create this folder:
 
-Test:
-`https://bbcs-77.github.io/UsedToBeesPlayer/?v=20`
+- audio/jingles
 
-Bob directly:
-`https://bbcs-77.github.io/UsedToBeesPlayer/?id=bobmullen&v=20`
+Upload:
 
-Permanent Google Sites embed:
-`https://bbcs-77.github.io/UsedToBeesPlayer/`
+- audio/jingles/Used-to-Bees-Reunion-Countdown.mp3
 
-To add a classmate later, upload the two MP3 files and add one object to profiles.json. Available labelTheme values: cream, blue, green, gold.
+Suggested commit message:
+
+`Add reunion countdown jingle to jukebox`
+
+## Test
+
+https://bbcs-77.github.io/UsedToBeesPlayer/?v=21
+
+The permanent Google Sites embed remains:
+
+https://bbcs-77.github.io/UsedToBeesPlayer/
