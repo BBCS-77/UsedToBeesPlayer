@@ -1,49 +1,47 @@
-# Used to Bees 8-Track Player
+# Used to Bees 8-Track Player — Audio-Only Version
 
-Starter player for the BBCS Class of '77 reunion website.
+This version removes YouTube completely.
 
-## Current test profile
+Playback sequence:
 
-- Classmate: John Berry
-- Song: Slow Ride
-- Artist: Foghat
-- Year: 1975
-- YouTube video ID: DfwsXn5n8HU
-- Dedication: audio/JohnBerryDedication.mp3
+1. John Berry's long-distance dedication
+2. A generated 8-track “ka-chunk”
+3. “Slow Ride” by Foghat
 
-## Publish on GitHub Pages
+## Replace the existing repository files
 
-1. Sign in to GitHub as **BBCS-77**.
-2. Create a new **public** repository named exactly:
-   `UsedToBeesPlayer`
-3. Upload all files and the `audio` folder from this package.
-4. Open the repository's **Settings**.
-5. Select **Pages** in the left menu.
-6. Under **Build and deployment**, choose:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/ (root)`
-7. Click **Save** and wait a minute or two.
+Open your `UsedToBeesPlayer` repository on GitHub and upload these items:
 
-The test address should become:
+- `index.html`
+- `styles.css`
+- `player.js`
+- the `audio` folder
+
+When GitHub asks about files with the same names, allow it to replace them.
+
+Commit message suggestion:
+
+`Change player to audio-only version`
+
+Your test URL remains:
 
 `https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry`
 
-GitHub URLs are case-sensitive in parts of the path. Use the exact repository spelling.
+GitHub Pages may take one or two minutes to refresh after the commit.
 
-## Embed in Google Sites
+## Google Sites embed
 
-1. Open John Berry's profile page in edit mode.
-2. Choose **Insert → Embed → By URL**.
-3. Paste:
-   `https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry`
-4. Insert it and resize the embed. A width around 850–950 pixels works well on desktop.
-5. Publish the Google Site.
+Use:
 
-## Adding more classmates later
+`https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry`
 
-Add another object inside `PROFILES` in `player.js`, following the John Berry example.
-Use a simple lowercase ID with no spaces.
+Choose **Insert → Embed → By URL** in Google Sites.
+
+## Adding another classmate
+
+1. Put the dedication and song MP3 files in the `audio` folder.
+2. Add another entry in the `PROFILES` section at the top of `player.js`.
+3. Use the new classmate ID in the URL.
 
 Example:
 
@@ -54,14 +52,12 @@ susanexample: {
   artist: "ABBA",
   year: "1976",
   dedication: "audio/SusanExampleDedication.mp3",
-  youtubeId: "YOUTUBE_VIDEO_ID"
+  song: "audio/ABBA-Dancing-Queen.mp3"
 }
 ```
 
-Then use:
+Then embed:
 
 `https://bbcs-77.github.io/UsedToBeesPlayer/?id=susanexample`
 
-## Important YouTube behavior
-
-The YouTube video remains visible because YouTube embeds are not intended to be hidden or used as audio-only players. A visitor clicks the maroon button once; the dedication plays first, followed by the YouTube song. Some browser settings may require a second click on the visible YouTube play button.
+Use simple filenames without apostrophes, ampersands, or unusual punctuation.
