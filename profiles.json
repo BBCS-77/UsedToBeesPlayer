@@ -7,6 +7,96 @@
     "year": 1975,
     "dedicationFile": "audio/dedications/JohnBerry.mp3",
     "songFile": "audio/songs/Foghat-Slow-Ride.mp3"
+  },  
+  {
+    "id": "jimhill",
+    "name": "Jim Hill",
+    "songTitle": "Don't Look Back",
+    "artist": "Boston",
+    "year": 1978,
+    "dedicationFile": "audio/dedications/JimHill.mp3",
+    "songFile": "audio/songs/Boston-Don't-Look-Back.mp3"
+  },
+  {
+    "id": "jackhill",
+    "name": "Jack Hill",
+    "songTitle": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "year": 1975,
+    "dedicationFile": "audio/dedications/JackHill.mp3",
+    "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3"
+  },
+  {
+    "id": "rosejaczynski",
+    "name": "Rose Jaczynski",
+    "songTitle": "Say, Has Anybody Seen My Sweet Gypsy Rose",
+    "artist": "Tony Orlando & Dawn",
+    "year": 1973,
+    "dedicationFile": "audio/dedications/JohnBerry.mp3",
+    "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3"
+  },
+  {
+    "id": "loriivison",
+    "name": "Lori Ivison",
+    "songTitle": "Dancing Queen",
+    "artist": "Abba",
+    "year": 1976,
+    "dedicationFile": "audio/dedications/LoiIvison.mp3",
+    "songFile": "audio/songs/Abba-Dancing-Queen.mp3"
+  },
+  {
+    "id": "lauriesmith",
+    "name": "Laurie Smith",
+    "songTitle": "American Pie",
+    "artist": "Don McLean",
+    "year": 1971,
+    "dedicationFile": "audio/dedications/LaurieSmith.mp3",
+    "songFile": "audio/songs/Don McLean-American-Pie.mp3"
+  },
+  {
+    "id": "rickbezon",
+    "name": "Rick Bezon",
+    "songTitle": "The Long Run",
+    "artist": "The Eagles",
+    "year": 1979,
+    "dedicationFile": "audio/dedications/RickBezon.mp3",
+    "songFile": "audio/songs/The Eagles-The Long-Run.mp3"
+  },
+  {
+    "id": "jeanettehollis",
+    "name": "Jeanette Hollis",
+    "songTitle": "Free Bird",
+    "artist": "Lynyrd Skynyrd",
+    "year": 1973,
+    "dedicationFile": "audio/dedications/JeanetteHollis.mp3",
+    "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3"
+  },
+  {
+    "id": "teresakowalik",
+    "name": "Teresa Kowalik",
+    "songTitle": "Black Water",
+    "artist": "The Doobie Brothers",
+    "year": 1974,
+    "dedicationFile": "audio/dedications/TeresaKowalik.mp3",
+    "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3"
+  },
+  {
+    "id": "sandyreese",
+    "name": "Sandy Reese",
+    "songTitle": "American Pie",
+    "artist": "Don McLean",
+    "year": 1971,
+    "dedicationFile": "audio/dedications/SandyReese.mp3",
+    "songFile": "audio/songs/Don McLean-American-Pie.mp3"
+  },
+  {
+    "id": "chrisglazier",
+    "name": "Chris Glazier",
+    "songTitle": "Tiny Dancer",
+    "artist": "Elton John",
+    "year": 1971,
+    "dedicationFile": "audio/dedications/ChrisGlazier.mp3",
+    "songFile": "audio/songs/Elton John-Tiny-Dancer.mp3"
   },
   {
     "id": "bobmullen",
