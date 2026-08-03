@@ -70,11 +70,12 @@ body {
   height:11.4%;
 }
 
+/* Aligned directly over the LEDs painted into player-bg.png */
 .program-glow {
   position:absolute;
-  left:43.75%;
-  top:48.2%;
-  width:1.7%;
+  left:43.03%;
+  top:46.30%;
+  width:1.43%;
   aspect-ratio:1;
   border-radius:50%;
   pointer-events:none;
@@ -83,11 +84,11 @@ body {
 
 .play-glow {
   position:absolute;
-  left:60.75%;
-  top:72.45%;
-  width:2.4%;
-  height:1.1%;
-  border-radius:20%;
+  left:59.38%;
+  top:70.50%;
+  width:1.95%;
+  height:1.27%;
+  border-radius:16%;
   pointer-events:none;
   z-index:4;
 }
@@ -108,13 +109,13 @@ body {
 }
 
 .player.is-playing .program-glow {
-  background:#ff3d21;
-  box-shadow:0 0 10px #ff3d21, 0 0 20px rgba(255,61,33,.85);
+  background:rgba(255,61,33,.82);
+  box-shadow:0 0 7px #ff3d21, 0 0 14px rgba(255,61,33,.75);
 }
 
 .player.is-playing .play-glow {
-  background:#5cff31;
-  box-shadow:0 0 8px #5cff31, 0 0 14px rgba(92,255,49,.85);
+  background:rgba(92,255,49,.80);
+  box-shadow:0 0 6px #5cff31, 0 0 12px rgba(92,255,49,.72);
 }
 
 @media (max-width:700px) {
