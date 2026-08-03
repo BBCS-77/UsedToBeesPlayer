@@ -1,45 +1,74 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
-<title>Used to Bees 8-Track Jukebox</title>
-<link rel="stylesheet" href="styles.css?v=22"></head>
-<body><main class="jukebox-wrap">
-<header class="jukebox-header">
-<div class="eyebrow">BBCS CLASS OF ’77</div>
-<h1>Used to Bees 8-Track Jukebox</h1>
-<p>Long-Distance Dedications from the Class of ’77</p>
-<div class="selector-bar">
-<button id="previousProfile" class="nav-button">◀ Previous</button>
-<label class="profile-select-label"><span>Choose a classmate</span><select id="profileSelect"></select></label>
-<button id="nextProfile" class="nav-button">Next ▶</button>
-<button id="randomProfile" class="random-button">🎲 Surprise Me</button>
-</div></header>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Used to Bees 8-Track Jukebox</title>
+  <link rel="stylesheet" href="styles.css?v=30">
+</head>
+<body>
+  <main class="app">
+    <header class="title-block">
+      <div class="kicker">BBCS CLASS OF ’77</div>
+      <h1>Used to Bees 8-Track Jukebox</h1>
+      <p>Long-Distance Dedications</p>
+    </header>
 
-<section class="player">
-<img class="player-art" src="assets/player-bg.png?v=22" alt="Vintage yellow 8-track stereo player">
-<div id="cartridgeOverlay" class="cartridge-overlay theme-cream">
-<div class="cartridge-brand">USED TO BEES</div>
-<div id="cartridgeName" class="cartridge-name">JOHN BERRY</div>
-<div id="cartridgeSong" class="cartridge-song">SLOW RIDE</div>
-<div class="cartridge-meta"><span id="cartridgeArtist">FOGHAT</span><span id="cartridgeYear">1975</span></div>
-</div>
-<div class="now-playing-overlay">
-<div class="display-label">NOW PLAYING</div>
-<div id="displaySong" class="display-song">Slow Ride</div>
-<div id="displayArtist" class="display-artist">Foghat</div>
-<div id="displayYear" class="display-year">1975</div>
-<div class="display-progress-row"><span id="elapsedTime">0:00</span>
-<div class="display-progress-track"><div id="displayProgressFill" class="display-progress-fill"></div></div>
-<span id="durationTime">0:00</span></div>
-</div>
-<div id="programNumber" class="program-number">3</div>
-<div class="program-glow"></div><div class="play-glow"></div><div id="vuNeedle" class="vu-needle"></div>
-<button id="playButton" class="hotspot play-hotspot" aria-label="Play or pause"></button>
-<button id="restartButton" class="hotspot rewind-hotspot" aria-label="Restart"></button>
-<button id="stopButton" class="hotspot stop-hotspot" aria-label="Stop"></button>
-<div id="statusText" class="status-text">READY</div>
-<audio id="jingleAudio" preload="metadata" src="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3"></audio><audio id="dedicationAudio" preload="metadata"></audio><audio id="songAudio" preload="metadata"></audio>
-</section>
-<footer class="jukebox-footer"><span id="profileSummary"></span></footer>
-</main><script src="player.js?v=22"></script></body></html>
+    <section class="jukebox-card">
+      <div class="selector-row">
+        <button id="previousProfile" class="secondary" type="button" aria-label="Previous classmate">◀</button>
+
+        <label class="select-wrap">
+          <span class="sr-only">Choose a classmate</span>
+          <select id="profileSelect" aria-label="Choose a classmate"></select>
+        </label>
+
+        <button id="nextProfile" class="secondary" type="button" aria-label="Next classmate">▶</button>
+        <button id="randomProfile" class="random" type="button">🎲 Surprise Me</button>
+      </div>
+
+      <div class="content-grid">
+        <figure class="player-figure">
+          <img src="assets/player-compact.webp?v=30" alt="Yellow vintage portable 8-track player">
+          <figcaption>PROGRAM <span id="programNumber">3</span></figcaption>
+        </figure>
+
+        <section class="info-panel" aria-live="polite">
+          <div class="now-label">NOW PLAYING</div>
+          <div id="classmateName" class="classmate-name">John Berry</div>
+          <h2 id="songTitle">Slow Ride</h2>
+          <div class="artist-line">
+            <span id="artistName">Foghat</span>
+            <span aria-hidden="true">•</span>
+            <span id="songYear">1975</span>
+          </div>
+
+          <div id="statusText" class="status">READY</div>
+
+          <div class="progress-row">
+            <span id="elapsedTime">0:00</span>
+            <div class="progress-track" aria-hidden="true">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <span id="durationTime">0:00</span>
+          </div>
+
+          <div class="transport-row">
+            <button id="playButton" class="primary" type="button">▶ Play</button>
+            <button id="pauseButton" class="secondary" type="button">Ⅱ Pause</button>
+            <button id="restartButton" class="secondary" type="button">↺ Restart</button>
+            <button id="stopButton" class="secondary" type="button">■ Stop</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <audio id="jingleAudio" preload="metadata" src="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3"></audio>
+    <audio id="dedicationAudio" preload="metadata"></audio>
+    <audio id="songAudio" preload="metadata"></audio>
+  </main>
+
+  <script src="player.js?v=30"></script>
+</body>
+</html>
