@@ -7,82 +7,47 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="page">
-    <section class="player-shell" aria-label="Used to Bees 8-track audio player">
-      <div class="handle" aria-hidden="true">
-        <span class="handle-left"></span>
-        <span class="handle-top"></span>
-        <span class="handle-right"></span>
-      </div>
+  <main class="stage">
+    <section class="player" aria-label="Used to Bees 8-track audio player">
+      <img class="player-art" src="assets/player-bg.png" alt="Vintage yellow 8-track stereo player">
 
-      <div class="player-body">
-        <header class="brand-row">
-          <div class="brand">BBCS • 1977</div>
-          <div class="model">USED TO BEES 8-TRACK</div>
-        </header>
-
-        <div class="content-grid">
-          <div class="speaker-panel">
-            <div class="speaker-ring">
-              <div class="speaker-grille">
-                <div class="program-badge" aria-label="Program 3">
-                  <span>PROGRAM</span>
-                  <strong>3</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="display-panel">
-            <div class="now-playing">NOW PLAYING</div>
-            <h1 id="songTitle">Slow Ride</h1>
-            <p id="artistLine">Foghat • 1975</p>
-            <p class="dedication-line">A long-distance dedication for <strong id="classmateName">John Berry</strong></p>
-
-            <div class="tape-window" aria-hidden="true">
-              <div class="reel reel-left"></div>
-              <div class="tape-line"></div>
-              <div class="reel reel-right"></div>
-            </div>
-
-            <div class="vu-wrap" aria-label="Audio level meter">
-              <div class="vu-label">OUTPUT LEVEL</div>
-              <div id="vuMeter" class="vu-meter">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span>
-              </div>
-            </div>
-
-            <div class="status-row">
-              <span id="statusText">Ready</span>
-              <span id="timeText">0:00 / 0:00</span>
-            </div>
-
-            <div class="progress-track" role="progressbar" aria-label="Playback progress">
-              <div id="progressFill" class="progress-fill"></div>
-            </div>
-
-            <div class="controls">
-              <button id="playSequence" class="main-button" type="button">▶ PLAY</button>
-              <button id="pauseAudio" type="button">Ⅱ PAUSE</button>
-              <button id="restartAudio" type="button">↺ RESTART</button>
-            </div>
-          </div>
+      <div class="dynamic-display">
+        <div class="small-label">NOW PLAYING</div>
+        <div id="songTitle" class="song-title">Slow Ride</div>
+        <div id="artistLine" class="artist-line">Foghat</div>
+        <div id="yearLine" class="year-line">1975</div>
+        <div class="elapsed-label">ELAPSED TIME</div>
+        <div class="time-row">
+          <span id="timeText">0:00</span>
+          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+          <span id="durationText">0:00</span>
         </div>
-
-        <footer>
-          <div class="bee-mark" aria-hidden="true">🐝</div>
-          <div>
-            <strong>USED TO BEES</strong>
-            <span>BBCS Class of ’77 Reunion Radio</span>
-          </div>
-        </footer>
       </div>
-    </section>
 
-    <audio id="dedicationAudio" preload="metadata"></audio>
-    <audio id="songAudio" preload="metadata"></audio>
+      <div class="dynamic-cartridge">
+        <div class="cartridge-brand">USED TO BEES</div>
+        <div id="classmateName" class="cartridge-name">JOHN BERRY</div>
+        <div id="cartridgeSong" class="cartridge-song">SLOW RIDE</div>
+        <div class="cartridge-bottom">
+          <span id="cartridgeArtist">FOGHAT</span>
+          <span id="cartridgeYear">1975</span>
+        </div>
+      </div>
+
+      <div class="program-light" aria-hidden="true"></div>
+      <div class="play-light" aria-hidden="true"></div>
+      <div class="vu-needle" aria-hidden="true"></div>
+
+      <button id="playSequence" class="hotspot play-hotspot" type="button" aria-label="Play dedication and song"></button>
+      <button id="pauseAudio" class="hotspot pause-hotspot" type="button" aria-label="Pause audio"></button>
+      <button id="restartAudio" class="hotspot rewind-hotspot" type="button" aria-label="Restart from dedication"></button>
+      <button id="stopAudio" class="hotspot stop-hotspot" type="button" aria-label="Stop audio"></button>
+
+      <div id="statusText" class="status-text">Ready</div>
+
+      <audio id="dedicationAudio" preload="metadata"></audio>
+      <audio id="songAudio" preload="metadata"></audio>
+    </section>
   </main>
 
   <script src="player.js"></script>

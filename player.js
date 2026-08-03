@@ -10,69 +10,66 @@ const PROFILES = {
 };
 
 const params = new URLSearchParams(window.location.search);
-const requestedId = (params.get("id") || "johnberry")
-  .toLowerCase()
-  .replace(/[^a-z0-9]/g, "");
-const profile = PROFILES[requestedId] || PROFILES.johnberry;
+const id = (params.get("id") || "johnberry").toLowerCase().replace(/[^a-z0-9]/g, "");
+const profile = PROFILES[id] || PROFILES.johnberry;
 
+const player = document.querySelector(".player");
 const dedication = document.getElementById("dedicationAudio");
 const song = document.getElementById("songAudio");
 const playButton = document.getElementById("playSequence");
 const pauseButton = document.getElementById("pauseAudio");
 const restartButton = document.getElementById("restartAudio");
+const stopButton = document.getElementById("stopAudio");
 const statusText = document.getElementById("statusText");
 const timeText = document.getElementById("timeText");
+const durationText = document.getElementById("durationText");
 const progressFill = document.getElementById("progressFill");
-const shell = document.querySelector(".player-shell");
-const badge = document.querySelector(".program-badge");
-const meterBars = [...document.querySelectorAll("#vuMeter span")];
+const vuNeedle = document.querySelector(".vu-needle");
 
-document.getElementById("classmateName").textContent = profile.classmate;
+document.getElementById("classmateName").textContent = profile.classmate.toUpperCase();
 document.getElementById("songTitle").textContent = profile.title;
-document.getElementById("artistLine").textContent = `${profile.artist} • ${profile.year}`;
+document.getElementById("artistLine").textContent = profile.artist;
+document.getElementById("yearLine").textContent = profile.year;
+document.getElementById("cartridgeSong").textContent = profile.title.toUpperCase();
+document.getElementById("cartridgeArtist").textContent = profile.artist.toUpperCase();
+document.getElementById("cartridgeYear").textContent = profile.year;
 document.title = `${profile.classmate} — ${profile.title}`;
 
 dedication.src = profile.dedication;
 song.src = profile.song;
 
 let currentAudio = null;
-let audioContext = null;
-let analyser = null;
-let animationFrame = null;
-let sourcesConnected = false;
-let sequenceToken = 0;
+let audioContext;
+let analyser;
+let graphReady = false;
+let meterFrame;
+let sequenceNumber = 0;
 
-function ensureAudioGraph() {
+function setupAudioGraph() {
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     analyser = audioContext.createAnalyser();
     analyser.fftSize = 128;
-    analyser.smoothingTimeConstant = 0.78;
+    analyser.smoothingTimeConstant = 0.82;
     analyser.connect(audioContext.destination);
   }
 
-  if (!sourcesConnected) {
-    const dedicationSource = audioContext.createMediaElementSource(dedication);
-    const songSource = audioContext.createMediaElementSource(song);
-    dedicationSource.connect(analyser);
-    songSource.connect(analyser);
-    sourcesConnected = true;
+  if (!graphReady) {
+    audioContext.createMediaElementSource(dedication).connect(analyser);
+    audioContext.createMediaElementSource(song).connect(analyser);
+    graphReady = true;
   }
 
-  if (audioContext.state === "suspended") {
-    audioContext.resume();
-  }
+  if (audioContext.state === "suspended") audioContext.resume();
 }
 
-async function playSequence() {
-  sequenceToken += 1;
-  const token = sequenceToken;
+async function startSequence() {
+  sequenceNumber += 1;
+  const thisRun = sequenceNumber;
 
-  stopAll(false);
-  ensureAudioGraph();
+  resetAudio();
+  setupAudioGraph();
 
-  dedication.currentTime = 0;
-  song.currentTime = 0;
   currentAudio = dedication;
   statusText.textContent = "Long-distance dedication";
   setPlaying(true);
@@ -80,24 +77,25 @@ async function playSequence() {
 
   try {
     await dedication.play();
-  } catch (error) {
-    statusText.textContent = "Press PLAY again";
+  } catch {
+    statusText.textContent = "Press play again";
     setPlaying(false);
     return;
   }
 
   dedication.onended = async () => {
-    if (token !== sequenceToken) return;
-    statusText.textContent = "Changing programs…";
+    if (thisRun !== sequenceNumber) return;
+
+    statusText.textContent = "Changing program";
     await playKaChunk();
-    if (token !== sequenceToken) return;
+    if (thisRun !== sequenceNumber) return;
 
     currentAudio = song;
-    statusText.textContent = "Playing song";
+    statusText.textContent = "Now playing";
     try {
       await song.play();
-    } catch (error) {
-      statusText.textContent = "Press PLAY to continue";
+    } catch {
+      statusText.textContent = "Press play to continue";
       setPlaying(false);
     }
   };
@@ -105,64 +103,110 @@ async function playSequence() {
 
 function playKaChunk() {
   return new Promise(resolve => {
-    ensureAudioGraph();
+    setupAudioGraph();
+    const t = audioContext.currentTime;
 
-    const now = audioContext.currentTime;
     const master = audioContext.createGain();
-    master.gain.setValueAtTime(0.0001, now);
-    master.gain.exponentialRampToValueAtTime(0.65, now + 0.008);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+    master.gain.setValueAtTime(0.0001, t);
+    master.gain.exponentialRampToValueAtTime(0.7, t + 0.01);
+    master.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
     master.connect(audioContext.destination);
 
-    const low = audioContext.createOscillator();
-    low.type = "triangle";
-    low.frequency.setValueAtTime(105, now);
-    low.frequency.exponentialRampToValueAtTime(48, now + 0.18);
-    low.connect(master);
-    low.start(now);
-    low.stop(now + 0.22);
+    const thump = audioContext.createOscillator();
+    thump.type = "triangle";
+    thump.frequency.setValueAtTime(115, t);
+    thump.frequency.exponentialRampToValueAtTime(45, t + 0.19);
+    thump.connect(master);
+    thump.start(t);
+    thump.stop(t + 0.22);
 
     const clickGain = audioContext.createGain();
-    clickGain.gain.setValueAtTime(0.35, now + 0.13);
-    clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+    clickGain.gain.setValueAtTime(0.5, t + 0.12);
+    clickGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.33);
     clickGain.connect(audioContext.destination);
 
     const click = audioContext.createOscillator();
     click.type = "square";
-    click.frequency.setValueAtTime(680, now + 0.13);
-    click.frequency.exponentialRampToValueAtTime(130, now + 0.28);
+    click.frequency.setValueAtTime(740, t + 0.12);
+    click.frequency.exponentialRampToValueAtTime(120, t + 0.3);
     click.connect(clickGain);
-    click.start(now + 0.13);
-    click.stop(now + 0.33);
+    click.start(t + 0.12);
+    click.stop(t + 0.34);
 
-    badge.classList.add("lit");
-    setTimeout(() => badge.classList.remove("lit"), 420);
-    setTimeout(resolve, 520);
+    setTimeout(resolve, 540);
   });
 }
 
-function stopAll(reset = true) {
+function resetAudio() {
   dedication.pause();
   song.pause();
-  if (reset) {
-    dedication.currentTime = 0;
-    song.currentTime = 0;
-  }
+  dedication.currentTime = 0;
+  song.currentTime = 0;
   currentAudio = null;
+  setPlaying(false);
+  stopMeter();
+  updateProgress();
+}
+
+function setPlaying(on) {
+  player.classList.toggle("is-playing", on);
+}
+
+function pauseCurrent() {
+  if (currentAudio) currentAudio.pause();
+  statusText.textContent = "Paused";
   setPlaying(false);
   stopMeter();
 }
 
-function setPlaying(isPlaying) {
-  shell.classList.toggle("is-playing", isPlaying);
+function stopCurrent() {
+  sequenceNumber += 1;
+  resetAudio();
+  statusText.textContent = "Stopped";
 }
 
 function updateProgress() {
-  if (!currentAudio) return;
-  const duration = currentAudio.duration || 0;
+  if (!currentAudio) {
+    timeText.textContent = "0:00";
+    durationText.textContent = "0:00";
+    progressFill.style.width = "0%";
+    return;
+  }
+
   const current = currentAudio.currentTime || 0;
-  timeText.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+  const duration = currentAudio.duration || 0;
+  timeText.textContent = formatTime(current);
+  durationText.textContent = formatTime(duration);
   progressFill.style.width = duration ? `${(current / duration) * 100}%` : "0%";
+}
+
+function startMeter() {
+  if (!analyser) return;
+  const data = new Uint8Array(analyser.frequencyBinCount);
+
+  const draw = () => {
+    analyser.getByteFrequencyData(data);
+    let sum = 0;
+    for (const value of data) sum += value;
+    const average = sum / data.length;
+    const rotation = -78 + Math.min(58, (average / 150) * 58);
+    vuNeedle.style.transform = `rotate(${rotation}deg)`;
+    meterFrame = requestAnimationFrame(draw);
+  };
+
+  draw();
+}
+
+function stopMeter() {
+  if (meterFrame) cancelAnimationFrame(meterFrame);
+  meterFrame = null;
+  vuNeedle.style.transform = "rotate(-73deg)";
+}
+
+function formatTime(value) {
+  if (!Number.isFinite(value)) return "0:00";
+  const total = Math.max(0, Math.floor(value));
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 }
 
 dedication.addEventListener("timeupdate", updateProgress);
@@ -175,48 +219,18 @@ song.addEventListener("ended", () => {
   progressFill.style.width = "100%";
 });
 
-playButton.addEventListener("click", playSequence);
-
-pauseButton.addEventListener("click", () => {
-  if (currentAudio) currentAudio.pause();
-  statusText.textContent = "Paused";
-  setPlaying(false);
-  stopMeter();
+playButton.addEventListener("click", () => {
+  if (currentAudio && currentAudio.paused && currentAudio.currentTime > 0) {
+    setupAudioGraph();
+    currentAudio.play();
+    statusText.textContent = currentAudio === song ? "Now playing" : "Long-distance dedication";
+    setPlaying(true);
+    startMeter();
+  } else {
+    startSequence();
+  }
 });
 
-restartButton.addEventListener("click", () => {
-  playSequence();
-});
-
-function startMeter() {
-  if (!analyser) return;
-  const data = new Uint8Array(analyser.frequencyBinCount);
-
-  const draw = () => {
-    analyser.getByteFrequencyData(data);
-    let total = 0;
-    for (let i = 0; i < data.length; i++) total += data[i];
-    const average = total / data.length;
-    const activeBars = Math.max(1, Math.round((average / 150) * meterBars.length));
-
-    meterBars.forEach((bar, index) => {
-      bar.classList.toggle("active", index < activeBars);
-    });
-
-    animationFrame = requestAnimationFrame(draw);
-  };
-
-  draw();
-}
-
-function stopMeter() {
-  if (animationFrame) cancelAnimationFrame(animationFrame);
-  animationFrame = null;
-  meterBars.forEach(bar => bar.classList.remove("active"));
-}
-
-function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) return "0:00";
-  const whole = Math.max(0, Math.floor(seconds));
-  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}`;
-}
+pauseButton.addEventListener("click", pauseCurrent);
+restartButton.addEventListener("click", startSequence);
+stopButton.addEventListener("click", stopCurrent);
