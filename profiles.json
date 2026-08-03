@@ -15,7 +15,7 @@
     "artist": "Boston",
     "year": 1978,
     "dedicationFile": "audio/dedications/JimHill.mp3",
-    "songFile": "audio/songs/Boston-Don't-Look-Back.mp3"
+    "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3"
   },
   {
     "id": "jackhill",
@@ -32,7 +32,7 @@
     "songTitle": "Say, Has Anybody Seen My Sweet Gypsy Rose",
     "artist": "Tony Orlando & Dawn",
     "year": 1973,
-    "dedicationFile": "audio/dedications/JohnBerry.mp3",
+    "dedicationFile": "audio/dedications/RodeJaczynski.mp3",
     "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3"
   },
   {
@@ -41,7 +41,7 @@
     "songTitle": "Dancing Queen",
     "artist": "Abba",
     "year": 1976,
-    "dedicationFile": "audio/dedications/LoiIvison.mp3",
+    "dedicationFile": "audio/dedications/LoriIvison.mp3",
     "songFile": "audio/songs/Abba-Dancing-Queen.mp3"
   },
   {
