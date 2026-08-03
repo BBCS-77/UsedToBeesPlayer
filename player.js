@@ -102,9 +102,11 @@ async function loadProfile(index, animate = true) {
 async function startSequence() {
   if (!currentProfile) return;
 
+  // Stop the previous sequence first, then create the token for this new run.
+  // Otherwise stopAll() invalidates the token before the jingle ends.
+  stopAll(false);
   runId += 1;
   const token = runId;
-  stopAll(false);
 
   currentAudio = jingle;
   phase = "jingle";
