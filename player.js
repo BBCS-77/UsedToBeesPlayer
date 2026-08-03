@@ -1,150 +1,23 @@
-const profile = {
-  dedication: "audio/JohnBerryDedication.mp3",
-  song: "audio/Foghat-Slow-Ride.mp3"
-};
-
-const player = document.querySelector(".player");
-const dedication = document.getElementById("dedicationAudio");
-const song = document.getElementById("songAudio");
-const playButton = document.getElementById("playButton");
-const restartButton = document.getElementById("restartButton");
-const stopButton = document.getElementById("stopButton");
-const statusText = document.getElementById("statusText");
-
-dedication.src = profile.dedication;
-song.src = profile.song;
-
-let currentAudio = null;
-let phase = "idle";
-let runId = 0;
-let audioContext = null;
-
-function setPlaying(on) {
-  player.classList.toggle("is-playing", on);
-}
-
-function setStatus(text) {
-  statusText.textContent = text.toUpperCase();
-}
-
-async function startSequence() {
-  runId += 1;
-  const thisRun = runId;
-
-  dedication.pause();
-  song.pause();
-  dedication.currentTime = 0;
-  song.currentTime = 0;
-
-  currentAudio = dedication;
-  phase = "dedication";
-  setStatus("Long-distance dedication");
-  setPlaying(true);
-
-  try {
-    await dedication.play();
-  } catch (error) {
-    setStatus("Click play again");
-    setPlaying(false);
-    return;
-  }
-
-  dedication.onended = async () => {
-    if (thisRun !== runId) return;
-    phase = "kachunk";
-    setStatus("Changing program");
-    await playKaChunk();
-    if (thisRun !== runId) return;
-
-    currentAudio = song;
-    phase = "song";
-    setStatus("Now playing");
-    try {
-      await song.play();
-    } catch (error) {
-      setStatus("Click play to continue");
-      setPlaying(false);
-    }
-  };
-}
-
-async function togglePlayPause() {
-  if (!currentAudio || phase === "idle" || phase === "finished") {
-    await startSequence();
-    return;
-  }
-
-  if (currentAudio.paused) {
-    try {
-      await currentAudio.play();
-      setStatus(phase === "song" ? "Now playing" : "Long-distance dedication");
-      setPlaying(true);
-    } catch {
-      setStatus("Click play again");
-    }
-  } else {
-    currentAudio.pause();
-    setStatus("Paused");
-    setPlaying(false);
-  }
-}
-
-function stopAll() {
-  runId += 1;
-  dedication.pause();
-  song.pause();
-  dedication.currentTime = 0;
-  song.currentTime = 0;
-  currentAudio = null;
-  phase = "idle";
-  setStatus("Stopped");
-  setPlaying(false);
-}
-
-function playKaChunk() {
-  return new Promise(resolve => {
-    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
-    if (audioContext.state === "suspended") audioContext.resume();
-
-    const t = audioContext.currentTime;
-    const gain = audioContext.createGain();
-    gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(0.65, t + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.42);
-    gain.connect(audioContext.destination);
-
-    const thump = audioContext.createOscillator();
-    thump.type = "triangle";
-    thump.frequency.setValueAtTime(115, t);
-    thump.frequency.exponentialRampToValueAtTime(48, t + 0.19);
-    thump.connect(gain);
-    thump.start(t);
-    thump.stop(t + 0.22);
-
-    const clickGain = audioContext.createGain();
-    clickGain.gain.setValueAtTime(0.4, t + 0.12);
-    clickGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
-    clickGain.connect(audioContext.destination);
-
-    const click = audioContext.createOscillator();
-    click.type = "square";
-    click.frequency.setValueAtTime(700, t + 0.12);
-    click.frequency.exponentialRampToValueAtTime(130, t + 0.3);
-    click.connect(clickGain);
-    click.start(t + 0.12);
-    click.stop(t + 0.34);
-
-    setTimeout(resolve, 540);
-  });
-}
-
-song.addEventListener("ended", () => {
-  phase = "finished";
-  currentAudio = null;
-  setStatus("Finished");
-  setPlaying(false);
-});
-
-playButton.addEventListener("click", togglePlayPause);
-restartButton.addEventListener("click", startSequence);
-stopButton.addEventListener("click", stopAll);
+let profiles=[],currentIndex=0,currentProfile=null,currentAudio=null,phase="idle",runId=0,audioContext=null,analyser=null,meterFrame=null,program=3;
+const $=id=>document.getElementById(id),player=document.querySelector(".player"),select=$("profileSelect"),dedication=$("dedicationAudio"),song=$("songAudio"),statusText=$("statusText"),progress=$("displayProgressFill"),vu=$("vuNeedle"),programNumber=$("programNumber"),cartridge=document.querySelector(".cartridge-overlay");
+const fields={name:$("cartridgeName"),song:$("cartridgeSong"),artist:$("cartridgeArtist"),year:$("cartridgeYear"),displaySong:$("displaySong"),displayArtist:$("displayArtist"),displayYear:$("displayYear"),summary:$("profileSummary"),elapsed:$("elapsedTime"),duration:$("durationTime")};
+boot();
+async function boot(){try{const r=await fetch("profiles.json?v="+Date.now(),{cache:"no-store"});profiles=await r.json();profiles.sort((a,b)=>a.name.localeCompare(b.name));const wanted=new URLSearchParams(location.search).get("id");currentIndex=Math.max(0,profiles.findIndex(p=>p.id===wanted));profiles.forEach((p,i)=>select.add(new Option(p.name+" — "+p.songTitle,i)));await loadProfile(currentIndex,false)}catch(e){console.error(e);setStatus("Profile data unavailable")}}
+async function loadProfile(index,animate=true){if(!profiles.length)return;stopAll(false);currentIndex=(index+profiles.length)%profiles.length;currentProfile=profiles[currentIndex];select.value=currentIndex;if(animate){cartridge.classList.add("is-changing");await delay(310)}
+fields.name.textContent=currentProfile.name.toUpperCase();fields.song.textContent=currentProfile.songTitle.toUpperCase();fields.artist.textContent=currentProfile.artist.toUpperCase();fields.year.textContent=currentProfile.year;
+fields.displaySong.textContent=currentProfile.songTitle;fields.displayArtist.textContent=currentProfile.artist;fields.displayYear.textContent=currentProfile.year;fields.summary.textContent=`${currentProfile.name} chose “${currentProfile.songTitle}” by ${currentProfile.artist} (${currentProfile.year}).`;
+cartridge.className=`cartridge-overlay theme-${currentProfile.labelTheme||"cream"}`;dedication.src=currentProfile.dedicationFile;song.src=currentProfile.songFile;dedication.load();song.load();program=3;programNumber.textContent=3;setStatus("Ready");updateProgress();const u=new URL(location.href);u.searchParams.set("id",currentProfile.id);history.replaceState({},"",u)}
+async function startSequence(){if(!currentProfile)return;runId++;const token=runId;stopAll(false);currentAudio=dedication;phase="dedication";setStatus("Long-distance dedication");setPlaying(true);startMeter();try{await dedication.play()}catch{setStatus("Click play again");setPlaying(false);stopMeter();return}
+dedication.onended=async()=>{if(token!==runId)return;phase="kachunk";setStatus("Changing program");await flipProgram();await playKaChunk();if(token!==runId)return;currentAudio=song;phase="song";setStatus("Now playing");try{await song.play()}catch{setStatus("Click play to continue");setPlaying(false);stopMeter()}}}
+async function togglePlayPause(){if(!currentAudio||phase==="idle"||phase==="finished"){await startSequence();return}if(currentAudio.paused){setupAudio();await currentAudio.play();setStatus(phase==="song"?"Now playing":"Long-distance dedication");setPlaying(true);startMeter()}else{currentAudio.pause();setStatus("Paused");setPlaying(false);stopMeter()}}
+function stopAll(show=true){runId++;dedication.pause();song.pause();dedication.currentTime=0;song.currentTime=0;currentAudio=null;phase="idle";setPlaying(false);stopMeter();updateProgress();if(show)setStatus("Stopped")}
+function setPlaying(v){player.classList.toggle("is-playing",v)}function setStatus(t){statusText.textContent=t.toUpperCase()}
+function updateProgress(){if(!currentAudio){fields.elapsed.textContent="0:00";fields.duration.textContent="0:00";progress.style.width="0%";return}const c=currentAudio.currentTime||0,d=currentAudio.duration||0;fields.elapsed.textContent=fmt(c);fields.duration.textContent=fmt(d);progress.style.width=d?c/d*100+"%":"0%"}
+function setupAudio(){audioContext ||= new (window.AudioContext||window.webkitAudioContext)();if(!analyser){analyser=audioContext.createAnalyser();analyser.fftSize=128;analyser.smoothingTimeConstant=.82;audioContext.createMediaElementSource(dedication).connect(analyser);audioContext.createMediaElementSource(song).connect(analyser);analyser.connect(audioContext.destination)}if(audioContext.state==="suspended")audioContext.resume()}
+function startMeter(){setupAudio();stopMeter();const data=new Uint8Array(analyser.frequencyBinCount);(function draw(){analyser.getByteFrequencyData(data);let sum=0;for(const n of data)sum+=n;vu.style.transform=`rotate(${-77+Math.min(60,(sum/data.length)/150*60)}deg)`;meterFrame=requestAnimationFrame(draw)})()}
+function stopMeter(){if(meterFrame)cancelAnimationFrame(meterFrame);meterFrame=null;vu.style.transform="rotate(-74deg)"}
+async function flipProgram(){programNumber.classList.add("flip");await delay(170);program=program===4?1:program+1;programNumber.textContent=program;programNumber.classList.remove("flip")}
+function playKaChunk(){return new Promise(resolve=>{setupAudio();const t=audioContext.currentTime,g=audioContext.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.72,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.46);g.connect(audioContext.destination);const a=audioContext.createOscillator();a.type="triangle";a.frequency.setValueAtTime(118,t);a.frequency.exponentialRampToValueAtTime(46,t+.2);a.connect(g);a.start(t);a.stop(t+.23);const g2=audioContext.createGain();g2.gain.setValueAtTime(.45,t+.13);g2.gain.exponentialRampToValueAtTime(.0001,t+.34);g2.connect(audioContext.destination);const b=audioContext.createOscillator();b.type="square";b.frequency.setValueAtTime(760,t+.13);b.frequency.exponentialRampToValueAtTime(125,t+.31);b.connect(g2);b.start(t+.13);b.stop(t+.35);setTimeout(resolve,560)})}
+const fmt=s=>{s=Math.max(0,Math.floor(Number.isFinite(s)?s:0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")},delay=ms=>new Promise(r=>setTimeout(r,ms));
+select.onchange=e=>loadProfile(+e.target.value);$("previousProfile").onclick=()=>loadProfile(currentIndex-1);$("nextProfile").onclick=()=>loadProfile(currentIndex+1);$("randomProfile").onclick=()=>{if(profiles.length<2)return;let i=currentIndex;while(i===currentIndex)i=Math.floor(Math.random()*profiles.length);loadProfile(i)};
+$("playButton").onclick=togglePlayPause;$("restartButton").onclick=startSequence;$("stopButton").onclick=()=>stopAll(true);dedication.ontimeupdate=updateProgress;song.ontimeupdate=updateProgress;song.onended=()=>{phase="finished";currentAudio=null;setStatus("Finished");setPlaying(false);stopMeter();progress.style.width="100%"};

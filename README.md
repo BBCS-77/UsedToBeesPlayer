@@ -1,32 +1,31 @@
-# Photo-Real Player Fix
+# Used to Bees 8-Track Jukebox v2
 
-This update fixes two problems:
+Upload this package into the existing `UsedToBeesPlayer` repository.
 
-1. The previous CSS overlays are removed, so no remnants of the older design should appear.
-2. The PLAY and PAUSE hotspots no longer overlap. The photographed PLAY button now toggles play/pause.
-
-## Replace these files in the repository root
-
+Root files:
 - index.html
 - styles.css
 - player.js
+- profiles.json
 - README.md
 
-## Replace this file in the assets folder
-
+Folders:
 - assets/player-bg.png
+- audio/dedications/JohnBerry.mp3
+- audio/dedications/BobMullen.mp3
+- audio/songs/Foghat-Slow-Ride.mp3
+- audio/songs/Kansas-Carry-On-Wayward-Son.mp3
 
-The existing audio files are unchanged and may remain in place:
+Commit message:
+`Build Used to Bees 8-Track Jukebox v2`
 
-- audio/JohnBerryDedication.mp3
-- audio/Foghat-Slow-Ride.mp3
+Test:
+`https://bbcs-77.github.io/UsedToBeesPlayer/?v=20`
 
-Commit with:
+Bob directly:
+`https://bbcs-77.github.io/UsedToBeesPlayer/?id=bobmullen&v=20`
 
-`Fix photo-real player and play button`
+Permanent Google Sites embed:
+`https://bbcs-77.github.io/UsedToBeesPlayer/`
 
-Then test with a cache-busting URL:
-
-`https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry&v=3`
-
-The `v=3` forces the browser and Google Sites to request the newest build.
+To add a classmate later, upload the two MP3 files and add one object to profiles.json. Available labelTheme values: cream, blue, green, gold.
