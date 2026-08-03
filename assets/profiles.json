@@ -1,0 +1,22 @@
+[
+  {
+    "id": "johnberry",
+    "name": "John Berry",
+    "songTitle": "Slow Ride",
+    "artist": "Foghat",
+    "year": 1975,
+    "dedicationFile": "audio/dedications/JohnBerry.mp3",
+    "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
+    "labelTheme": "cream"
+  },
+  {
+    "id": "bobmullen",
+    "name": "Bob Mullen",
+    "songTitle": "Carry On Wayward Son",
+    "artist": "Kansas",
+    "year": 1976,
+    "dedicationFile": "audio/dedications/BobMullen.mp3",
+    "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3",
+    "labelTheme": "blue"
+  }
+]
