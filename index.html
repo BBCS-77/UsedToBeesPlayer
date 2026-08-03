@@ -3,53 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Used to Bees 8-Track Player</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <main class="stage">
     <section class="player" aria-label="Used to Bees 8-track audio player">
-      <img class="player-art" src="assets/player-bg.png" alt="Vintage yellow 8-track stereo player">
+      <img class="player-art" src="assets/player-bg.png?v=3" alt="Vintage yellow 8-track stereo player">
 
-      <div class="dynamic-display">
-        <div class="small-label">NOW PLAYING</div>
-        <div id="songTitle" class="song-title">Slow Ride</div>
-        <div id="artistLine" class="artist-line">Foghat</div>
-        <div id="yearLine" class="year-line">1975</div>
-        <div class="elapsed-label">ELAPSED TIME</div>
-        <div class="time-row">
-          <span id="timeText">0:00</span>
-          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-          <span id="durationText">0:00</span>
-        </div>
-      </div>
+      <button id="playButton" class="hotspot play-hotspot" type="button" aria-label="Play or pause"></button>
+      <button id="restartButton" class="hotspot rewind-hotspot" type="button" aria-label="Restart dedication and song"></button>
+      <button id="stopButton" class="hotspot stop-hotspot" type="button" aria-label="Stop"></button>
 
-      <div class="dynamic-cartridge">
-        <div class="cartridge-brand">USED TO BEES</div>
-        <div id="classmateName" class="cartridge-name">JOHN BERRY</div>
-        <div id="cartridgeSong" class="cartridge-song">SLOW RIDE</div>
-        <div class="cartridge-bottom">
-          <span id="cartridgeArtist">FOGHAT</span>
-          <span id="cartridgeYear">1975</span>
-        </div>
-      </div>
-
-      <div class="program-light" aria-hidden="true"></div>
-      <div class="play-light" aria-hidden="true"></div>
-      <div class="vu-needle" aria-hidden="true"></div>
-
-      <button id="playSequence" class="hotspot play-hotspot" type="button" aria-label="Play dedication and song"></button>
-      <button id="pauseAudio" class="hotspot pause-hotspot" type="button" aria-label="Pause audio"></button>
-      <button id="restartAudio" class="hotspot rewind-hotspot" type="button" aria-label="Restart from dedication"></button>
-      <button id="stopAudio" class="hotspot stop-hotspot" type="button" aria-label="Stop audio"></button>
-
-      <div id="statusText" class="status-text">Ready</div>
+      <div id="programGlow" class="program-glow" aria-hidden="true"></div>
+      <div id="playGlow" class="play-glow" aria-hidden="true"></div>
+      <div id="statusText" class="status">READY</div>
 
       <audio id="dedicationAudio" preload="metadata"></audio>
       <audio id="songAudio" preload="metadata"></audio>
     </section>
   </main>
-
-  <script src="player.js"></script>
+  <script src="player.js?v=3"></script>
 </body>
 </html>

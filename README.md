@@ -1,53 +1,32 @@
-# Used to Bees Photo-Real 8-Track Player
+# Photo-Real Player Fix
 
-This version uses the realistic yellow 8-track artwork as the player face. The controls are transparent clickable hotspots placed over the photographed buttons.
+This update fixes two problems:
 
-## Upload these items to the existing GitHub repository
+1. The previous CSS overlays are removed, so no remnants of the older design should appear.
+2. The PLAY and PAUSE hotspots no longer overlap. The photographed PLAY button now toggles play/pause.
 
-Replace the existing root files with:
+## Replace these files in the repository root
 
-- `index.html`
-- `styles.css`
-- `player.js`
-- `README.md`
+- index.html
+- styles.css
+- player.js
+- README.md
 
-Upload these folders:
+## Replace this file in the assets folder
 
-- `assets`
-  - `player-bg.png`
-- `audio`
-  - `JohnBerryDedication.mp3`
-  - `Foghat-Slow-Ride.mp3`
+- assets/player-bg.png
 
-Suggested commit message:
+The existing audio files are unchanged and may remain in place:
 
-`Use photo-real 8-track player design`
+- audio/JohnBerryDedication.mp3
+- audio/Foghat-Slow-Ride.mp3
 
-GitHub Pages will redeploy automatically. There is no need to repeat the Pages setup.
+Commit with:
 
-Test URL:
+`Fix photo-real player and play button`
 
-`https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry`
+Then test with a cache-busting URL:
 
-Use Ctrl+F5 if the old version remains cached.
+`https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry&v=3`
 
-## Current controls
-
-- Click the photographed **PLAY** button to begin.
-- The dedication plays first.
-- A generated 8-track ka-chunk follows.
-- The song starts automatically.
-- The photographed **REWIND** button restarts the whole sequence.
-- The photographed **STOP** button stops playback.
-
-## Google Sites
-
-After testing the direct GitHub Pages address, use Google Sites:
-
-**Insert → Embed → By URL**
-
-Paste:
-
-`https://bbcs-77.github.io/UsedToBeesPlayer/?id=johnberry`
-
-Resize the embed to preserve the wide 3:2 player shape.
+The `v=3` forces the browser and Google Sites to request the newest build.
