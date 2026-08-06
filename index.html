@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
   <title>Used to Bees Reunion Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=43">
+  <link rel="stylesheet" href="styles.css?v=44">
 </head>
 <body>
 <main class="app">
-  <header class="masthead">
-    <div class="kicker">BBCS CLASS OF ’77</div>
-    <h1>Used to Bees Reunion Jukebox</h1>
-    <p>Long-Distance Dedications</p>
-  </header>
+  <section class="jukebox" aria-label="Used to Bees Reunion Jukebox">
+    <div class="neon-arch" aria-hidden="true">
+      <span class="arch arch-outer"></span>
+      <span class="arch arch-middle"></span>
+      <span class="arch arch-inner"></span>
+    </div>
 
-  <section class="jukebox" aria-label="Used to Bees tabletop jukebox">
-    <div class="chrome"></div>
+    <header class="jukebox-sign">
+      <div class="script-title">Used to Bees</div>
+      <div class="sign-subtitle">REUNION JUKEBOX</div>
+    </header>
 
     <div class="selector-deck">
       <button id="previousProfile" class="selector-key" type="button" aria-label="Previous classmate">◀</button>
@@ -25,20 +28,20 @@
         <select id="profileSelect"></select>
       </label>
       <button id="nextProfile" class="selector-key" type="button" aria-label="Next classmate">▶</button>
-      <button id="randomProfile" class="surprise-key" type="button">Surprise Me</button>
+      <button id="randomProfile" class="surprise-key" type="button">★ Surprise Me</button>
     </div>
 
-    <div class="glass-window">
-      <aside class="left-column">
-        <div class="title-strip">
+    <div class="display-grid">
+      <aside class="info-column left-info">
+        <div class="yellow-card">
           <span id="previousName"></span>
           <strong id="activeNameLeft"></strong>
           <span id="nextName"></span>
         </div>
       </aside>
 
-      <section class="portrait-stage">
-        <div class="photo-console">
+      <section class="center-console">
+        <div class="photo-bezel">
           <div class="photo-frame">
             <img id="yearbookPhoto" class="portrait portrait-visible" alt="">
             <img id="currentPhoto" class="portrait" alt="">
@@ -47,26 +50,20 @@
 
           <div class="photo-tabs" role="group" aria-label="Choose photo">
             <button id="showYearbook" class="photo-tab active" type="button">1977</button>
-            <button id="showCurrent" class="photo-tab" type="button">Today</button>
-          </div>
-
-          <div class="control-deck">
-            <button id="playButton" class="control primary" type="button">▶ Play</button>
-            <button id="pauseButton" class="control" type="button">Ⅱ Pause</button>
-            <button id="restartButton" class="control" type="button">↺ Restart</button>
-            <button id="stopButton" class="control" type="button">■ Stop</button>
+            <button id="showCurrent" class="photo-tab" type="button">TODAY</button>
           </div>
         </div>
       </section>
 
-      <aside class="right-column">
-        <div class="title-strip strip-right">
+      <aside class="info-column right-info">
+        <div class="yellow-card">
           <span id="artistStrip"></span>
           <strong id="songStrip"></strong>
           <span id="yearStrip"></span>
         </div>
 
-        <div class="status-panel">
+        <div class="status-card">
+          <div class="status-label">PLAYING:</div>
           <div id="statusText" class="status">READY</div>
           <div class="progress-row">
             <span id="elapsedTime">0:00</span>
@@ -79,20 +76,27 @@
       </aside>
     </div>
 
-    <div class="summary-strip">
-      <div id="classmateName" class="classmate-name"></div>
-      <h2 id="songTitle"></h2>
-      <div class="artist-line">
-        <span id="artistName"></span> • <span id="songYear"></span>
-      </div>
+    <div class="transport-panel">
+      <button id="playButton" class="transport-button primary" type="button">
+        <span class="transport-icon">▶</span><span>PLAY</span>
+      </button>
+      <button id="pauseButton" class="transport-button" type="button">
+        <span class="transport-icon">Ⅱ</span><span>PAUSE</span>
+      </button>
+      <button id="restartButton" class="transport-button" type="button">
+        <span class="transport-icon">↺</span><span>RESTART</span>
+      </button>
+      <button id="stopButton" class="transport-button" type="button">
+        <span class="transport-icon">■</span><span>STOP</span>
+      </button>
     </div>
 
-    <div class="chrome"></div>
+    <div class="bottom-chrome" aria-hidden="true"></div>
   </section>
 
   <audio id="sequenceAudio" preload="metadata"></audio>
 </main>
 
-<script src="player.js?v=43"></script>
+<script src="player.js?v=44"></script>
 </body>
 </html>

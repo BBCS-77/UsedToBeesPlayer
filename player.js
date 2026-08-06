@@ -107,7 +107,7 @@ async function playStage(nextPhase,src,status,token){
 audio.addEventListener("ended",async()=>{
   const token=runId;
   if(phase==="jingle"){
-    photoTimer=setTimeout(()=>showPhoto("current"),3000);
+    photoTimer=setTimeout(()=>showPhoto("current"),8000);
     await playStage("dedication",currentProfile.dedicationFile,"Long-distance dedication",token);
     return;
   }
