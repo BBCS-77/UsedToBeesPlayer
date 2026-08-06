@@ -2,73 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>Used to Bees 8-Track Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=30">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+  <title>Used to Bees Reunion Jukebox</title>
+  <link rel="stylesheet" href="styles.css?v=40">
 </head>
 <body>
-  <main class="app">
-    <header class="title-block">
-      <div class="kicker">BBCS CLASS OF ’77</div>
-      <h1>Used to Bees 8-Track Jukebox</h1>
-      <p>Long-Distance Dedications</p>
-    </header>
+<main class="app">
+  <header class="masthead">
+    <div class="kicker">BBCS CLASS OF ’77</div>
+    <h1>Used to Bees Reunion Jukebox</h1>
+    <p>Long-Distance Dedications</p>
+  </header>
 
-    <section class="jukebox-card">
-      <div class="selector-row">
-        <button id="previousProfile" class="secondary" type="button" aria-label="Previous classmate">◀</button>
+  <section class="jukebox" aria-label="Used to Bees tabletop jukebox">
+    <div class="chrome"></div>
 
-        <label class="select-wrap">
-          <span class="sr-only">Choose a classmate</span>
-          <select id="profileSelect" aria-label="Choose a classmate"></select>
-        </label>
+    <div class="selector-deck">
+      <button id="previousProfile" class="selector-key" type="button" aria-label="Previous classmate">◀</button>
+      <label class="profile-select"><span class="sr-only">Choose a classmate</span><select id="profileSelect"></select></label>
+      <button id="nextProfile" class="selector-key" type="button" aria-label="Next classmate">▶</button>
+      <button id="randomProfile" class="surprise-key" type="button">Surprise Me</button>
+    </div>
 
-        <button id="nextProfile" class="secondary" type="button" aria-label="Next classmate">▶</button>
-        <button id="randomProfile" class="random" type="button">🎲 Surprise Me</button>
+    <div class="glass-window">
+      <div class="title-strip">
+        <span id="previousName">Previous</span>
+        <strong id="activeNameLeft">Classmate</strong>
+        <span id="nextName">Next</span>
       </div>
 
-      <div class="content-grid">
-        <figure class="player-figure">
-          <img src="assets/player-compact.webp?v=30" alt="Yellow vintage portable 8-track player">
-          <figcaption>PROGRAM <span id="programNumber">3</span></figcaption>
-        </figure>
+      <section class="portrait-stage">
+        <div class="photo-frame">
+          <img id="yearbookPhoto" class="portrait portrait-visible" alt="">
+          <img id="currentPhoto" class="portrait" alt="">
+          <div id="photoFallback" class="photo-fallback" hidden>Photo unavailable</div>
+        </div>
+        <div class="photo-tabs" role="group" aria-label="Choose photo">
+          <button id="showYearbook" class="photo-tab active" type="button">1977</button>
+          <button id="showCurrent" class="photo-tab" type="button">Today</button>
+        </div>
+      </section>
 
-        <section class="info-panel" aria-live="polite">
-          <div class="now-label">NOW PLAYING</div>
-          <div id="classmateName" class="classmate-name">John Berry</div>
-          <h2 id="songTitle">Slow Ride</h2>
-          <div class="artist-line">
-            <span id="artistName">Foghat</span>
-            <span aria-hidden="true">•</span>
-            <span id="songYear">1975</span>
-          </div>
+      <div class="title-strip strip-right">
+        <span id="artistStrip">Artist</span>
+        <strong id="songStrip">Song</strong>
+        <span id="yearStrip">Year</span>
+      </div>
+    </div>
 
-          <div id="statusText" class="status">READY</div>
-
-          <div class="progress-row">
-            <span id="elapsedTime">0:00</span>
-            <div class="progress-track" aria-hidden="true">
-              <div id="progressFill" class="progress-fill"></div>
-            </div>
-            <span id="durationTime">0:00</span>
-          </div>
-
-          <div class="transport-row">
-            <button id="playButton" class="primary" type="button">▶ Play</button>
-            <button id="pauseButton" class="secondary" type="button">Ⅱ Pause</button>
-            <button id="restartButton" class="secondary" type="button">↺ Restart</button>
-            <button id="stopButton" class="secondary" type="button">■ Stop</button>
-          </div>
-        </section>
+    <section class="now-playing">
+      <div>
+        <div class="now-label">NOW PLAYING</div>
+        <div id="classmateName" class="classmate-name"></div>
+        <h2 id="songTitle"></h2>
+        <div class="artist-line"><span id="artistName"></span> • <span id="songYear"></span></div>
+      </div>
+      <div class="status-area">
+        <div id="statusText" class="status">READY</div>
+        <div class="progress-row">
+          <span id="elapsedTime">0:00</span>
+          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+          <span id="durationTime">0:00</span>
+        </div>
       </div>
     </section>
 
-    <audio id="jingleAudio" preload="metadata" src="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3"></audio>
-    <audio id="dedicationAudio" preload="metadata"></audio>
-    <audio id="songAudio" preload="metadata"></audio>
-  </main>
+    <div class="control-deck">
+      <button id="playButton" class="control primary" type="button">▶ Play</button>
+      <button id="pauseButton" class="control" type="button">Ⅱ Pause</button>
+      <button id="restartButton" class="control" type="button">↺ Restart</button>
+      <button id="stopButton" class="control" type="button">■ Stop</button>
+    </div>
+    <div class="chrome"></div>
+  </section>
 
-  <script src="player.js?v=30"></script>
+  <audio id="jingleAudio" preload="metadata" src="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3"></audio>
+  <audio id="dedicationAudio" preload="metadata"></audio>
+  <audio id="songAudio" preload="metadata"></audio>
+</main>
+<script src="player.js?v=40"></script>
 </body>
 </html>

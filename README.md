@@ -1,49 +1,46 @@
-# Used to Bees 8-Track Jukebox v3 — Responsive Redesign
+# Used to Bees Tabletop Reunion Jukebox — Version 4
 
-This version was rebuilt specifically for Google Sites embeds on tablets and phones.
+This redesign keeps your current `profiles.json`, photos, dedication MP3s, song MP3s, and countdown jingle.
 
-## What changed
+## Upload to GitHub
 
-- Replaced the oversized wide player artwork with the original compact yellow player.
-- Removed all live text overlays from the artwork.
-- Moved classmate, song, artist, status, timing, and controls into responsive HTML.
-- Reduced the title and navigation height on phones.
-- Prevented long song titles from colliding with artwork.
-- Kept the existing jingle → dedication → ka-chunk → song sequence.
+Replace only these root files:
 
-## Upload to the existing repository
+- `index.html`
+- `styles.css`
+- `player.js`
+- `README.md`
 
-Replace these root files:
+Do **not** replace `profiles.json`, `audio`, or `photos`.
 
-- index.html
-- styles.css
-- player.js
-- profiles.json
-- README.md
+Commit message:
 
-Upload or replace:
+`Install tabletop reunion jukebox v4`
 
-- assets/player-compact.webp
+Test:
 
-The included audio folders are unchanged and are provided only as a complete backup package.
+`https://bbcs-77.github.io/UsedToBeesPlayer/?v=40`
 
-Suggested commit:
+## Photo behavior
 
-`Install responsive jukebox v3`
+- Yearbook photo appears first.
+- During the dedication, the display dissolves to the current photo.
+- 1977 and Today buttons allow manual switching.
+- JPG, JPEG, PNG, and mixed filename capitalization are supported.
+- The default framing uses `object-fit: cover` and `object-position: center 24%`.
 
-## Test URL
+For a spouse/group photo that needs different framing, add an optional field to that profile:
 
-https://bbcs-77.github.io/UsedToBeesPlayer/?v=30
+```json
+"currentPhotoPosition": "center center"
+```
 
-## Google Sites embed
+Other examples:
 
-Use:
+```json
+"currentPhotoPosition": "35% 20%"
+```
 
-https://bbcs-77.github.io/UsedToBeesPlayer/?v=30
-
-Recommended starting embed height:
-
-- Desktop or Surface: about 650–700 px
-- Phone layout: about 520–580 px
-
-Google Sites uses one embed box, so set it tall enough for the phone layout and preview before publishing.
+```json
+"currentPhotoPosition": "65% 25%"
+```
