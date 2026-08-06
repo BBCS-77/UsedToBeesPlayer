@@ -61,6 +61,18 @@
     "aiVideo": "video/LoriIvison.mp4"
   },
   {
+    "id": "lauriesmith",
+    "name": "Laurie Smith",
+    "songTitle": "American Pie",
+    "artist": "Don McLean",
+    "year": 1971,
+    "dedicationFile": "audio/dedications/LaurieSmith.mp3",
+    "songFile": "audio/songs/Don McLean-American-Pie.mp3",
+    "yearbookPhoto": "photos/yearbook/LaurieSmith.jpg",
+    "currentPhoto": "photos/current/LaurieSmith.jpg",
+    "aiVideo": "video/LaurieSmith.mp4"
+  },
+  {
     "id": "rickbezon",
     "name": "Rick Bezon",
     "songTitle": "The Long Run",
