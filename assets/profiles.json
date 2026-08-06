@@ -7,7 +7,9 @@
     "year": 1975,
     "dedicationFile": "audio/dedications/JohnBerry.mp3",
     "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
-    "labelTheme": "cream"
+    "labelTheme": "cream",
+    "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
+    "currentPhoto": "photos/current/JohnBerry.jpg"
   },
   {
     "id": "bobmullen",
@@ -17,6 +19,8 @@
     "year": 1976,
     "dedicationFile": "audio/dedications/BobMullen.mp3",
     "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3",
-    "labelTheme": "blue"
+    "labelTheme": "blue",
+    "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
+    "currentPhoto": "photos/current/JohnBerry.jpeg"
   }
 ]
