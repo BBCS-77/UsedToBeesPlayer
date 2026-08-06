@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
   <title>Used to Bees Reunion Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=40">
+  <link rel="stylesheet" href="styles.css?v=42">
 </head>
 <body>
 <main class="app">
@@ -14,43 +14,33 @@
     <h1>Used to Bees Reunion Jukebox</h1>
     <p>Long-Distance Dedications</p>
   </header>
-
-  <section class="jukebox" aria-label="Used to Bees tabletop jukebox">
+  <section class="jukebox">
     <div class="chrome"></div>
-
     <div class="selector-deck">
-      <button id="previousProfile" class="selector-key" type="button" aria-label="Previous classmate">◀</button>
-      <label class="profile-select"><span class="sr-only">Choose a classmate</span><select id="profileSelect"></select></label>
-      <button id="nextProfile" class="selector-key" type="button" aria-label="Next classmate">▶</button>
-      <button id="randomProfile" class="surprise-key" type="button">Surprise Me</button>
+      <button id="previousProfile" class="selector-key">◀</button>
+      <label><span class="sr-only">Choose a classmate</span><select id="profileSelect"></select></label>
+      <button id="nextProfile" class="selector-key">▶</button>
+      <button id="randomProfile" class="surprise-key">Surprise Me</button>
     </div>
-
     <div class="glass-window">
       <div class="title-strip">
-        <span id="previousName">Previous</span>
-        <strong id="activeNameLeft">Classmate</strong>
-        <span id="nextName">Next</span>
+        <span id="previousName"></span><strong id="activeNameLeft"></strong><span id="nextName"></span>
       </div>
-
       <section class="portrait-stage">
         <div class="photo-frame">
           <img id="yearbookPhoto" class="portrait portrait-visible" alt="">
           <img id="currentPhoto" class="portrait" alt="">
           <div id="photoFallback" class="photo-fallback" hidden>Photo unavailable</div>
         </div>
-        <div class="photo-tabs" role="group" aria-label="Choose photo">
-          <button id="showYearbook" class="photo-tab active" type="button">1977</button>
-          <button id="showCurrent" class="photo-tab" type="button">Today</button>
+        <div class="photo-tabs">
+          <button id="showYearbook" class="photo-tab active">1977</button>
+          <button id="showCurrent" class="photo-tab">Today</button>
         </div>
       </section>
-
       <div class="title-strip strip-right">
-        <span id="artistStrip">Artist</span>
-        <strong id="songStrip">Song</strong>
-        <span id="yearStrip">Year</span>
+        <span id="artistStrip"></span><strong id="songStrip"></strong><span id="yearStrip"></span>
       </div>
     </div>
-
     <section class="now-playing">
       <div>
         <div class="now-label">NOW PLAYING</div>
@@ -58,7 +48,7 @@
         <h2 id="songTitle"></h2>
         <div class="artist-line"><span id="artistName"></span> • <span id="songYear"></span></div>
       </div>
-      <div class="status-area">
+      <div>
         <div id="statusText" class="status">READY</div>
         <div class="progress-row">
           <span id="elapsedTime">0:00</span>
@@ -67,20 +57,18 @@
         </div>
       </div>
     </section>
-
     <div class="control-deck">
-      <button id="playButton" class="control primary" type="button">▶ Play</button>
-      <button id="pauseButton" class="control" type="button">Ⅱ Pause</button>
-      <button id="restartButton" class="control" type="button">↺ Restart</button>
-      <button id="stopButton" class="control" type="button">■ Stop</button>
+      <button id="playButton" class="control primary">▶ Play</button>
+      <button id="pauseButton" class="control">Ⅱ Pause</button>
+      <button id="restartButton" class="control">↺ Restart</button>
+      <button id="stopButton" class="control">■ Stop</button>
     </div>
     <div class="chrome"></div>
   </section>
 
-  <audio id="jingleAudio" preload="metadata" src="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3"></audio>
-  <audio id="dedicationAudio" preload="metadata"></audio>
-  <audio id="songAudio" preload="metadata"></audio>
+  <!-- One audio element is used for the whole sequence. This is more reliable on phones/tablets. -->
+  <audio id="sequenceAudio" preload="metadata"></audio>
 </main>
-<script src="player.js?v=40"></script>
+<script src="player.js?v=42"></script>
 </body>
 </html>
