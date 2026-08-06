@@ -1,7 +1,7 @@
 let profiles=[],currentIndex=0,currentProfile=null,phase="idle",runId=0,photoTimer=null;
 const $=id=>document.getElementById(id);
 const audio=$("sequenceAudio"),select=$("profileSelect"),yearbook=$("yearbookPhoto"),current=$("currentPhoto"),fallback=$("photoFallback");
-const fields={name:$("classmateName"),song:$("songTitle"),artist:$("artistName"),year:$("songYear"),status:$("statusText"),elapsed:$("elapsedTime"),duration:$("durationTime"),progress:$("progressFill")};
+const fields={status:$("statusText"),elapsed:$("elapsedTime"),duration:$("durationTime"),progress:$("progressFill")};
 const JINGLE="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3";
 
 boot();
@@ -26,10 +26,6 @@ function loadProfile(index){
   currentProfile=profiles[currentIndex];
   select.value=String(currentIndex);
 
-  fields.name.textContent=currentProfile.name;
-  fields.song.textContent=currentProfile.songTitle;
-  fields.artist.textContent=currentProfile.artist;
-  fields.year.textContent=currentProfile.year;
   $("activeNameLeft").textContent=currentProfile.name;
   $("songStrip").textContent=currentProfile.songTitle;
   $("artistStrip").textContent=currentProfile.artist;
