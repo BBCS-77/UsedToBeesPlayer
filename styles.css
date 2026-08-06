@@ -678,3 +678,59 @@ select:focus-visible{
     font-size:.66rem !important;
   }
 }
+
+
+/* v5 — AI video media stage */
+.media-video{
+  object-fit:cover;
+  object-position:center 24%;
+  background:#080706;
+}
+
+.media-flash{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  background:rgba(255,225,145,.9);
+  opacity:0;
+}
+
+.media-flash.flash{
+  animation:relayFlash .28s ease-out;
+}
+
+@keyframes relayFlash{
+  0%{opacity:0}
+  35%{opacity:.85}
+  100%{opacity:0}
+}
+
+.three-tabs{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  width:min(100%,280px);
+}
+
+.three-tabs .photo-tab{
+  padding-left:5px;
+  padding-right:5px;
+  white-space:nowrap;
+}
+
+.photo-tab:disabled{
+  cursor:not-allowed;
+  opacity:.42;
+  filter:grayscale(1);
+}
+
+@media(max-width:560px){
+  .three-tabs{
+    gap:4px;
+  }
+
+  .three-tabs .photo-tab{
+    padding-left:2px;
+    padding-right:2px;
+    font-size:.58rem;
+  }
+}

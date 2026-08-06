@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
   <title>Used to Bees Reunion Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=48_1">
+  <link rel="stylesheet" href="styles.css?v=50">
 </head>
 <body>
 <main class="app">
@@ -50,14 +50,21 @@
 
       <section class="center-console">
         <div class="photo-bezel">
-          <div class="photo-frame">
+          <div id="mediaFrame" class="photo-frame">
             <img id="yearbookPhoto" class="portrait portrait-visible" alt="">
+            <video id="aiVideo"
+                   class="portrait media-video"
+                   playsinline
+                   preload="metadata"
+                   disablepictureinpicture></video>
             <img id="currentPhoto" class="portrait" alt="">
-            <div id="photoFallback" class="photo-fallback" hidden>Photo unavailable</div>
+            <div id="mediaFlash" class="media-flash" aria-hidden="true"></div>
+            <div id="photoFallback" class="photo-fallback" hidden>Media unavailable</div>
           </div>
 
-          <div class="photo-tabs" role="group" aria-label="Choose photo">
+          <div class="photo-tabs three-tabs" role="group" aria-label="Choose media">
             <button id="showYearbook" class="photo-tab active" type="button">1977</button>
+            <button id="showAiVideo" class="photo-tab" type="button">AI Video</button>
             <button id="showCurrent" class="photo-tab" type="button">TODAY</button>
           </div>
         </div>
@@ -106,6 +113,6 @@
   <audio id="sequenceAudio" preload="metadata"></audio>
 </main>
 
-<script src="player.js?v=48_1"></script>
+<script src="player.js?v=50"></script>
 </body>
 </html>

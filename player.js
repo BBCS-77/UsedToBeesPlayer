@@ -1,27 +1,56 @@
-let profiles=[],currentIndex=0,currentProfile=null,phase="idle",runId=0,photoTimer=null;
+let profiles=[];
+let currentIndex=0;
+let currentProfile=null;
+let phase="idle";
+let runId=0;
+
 const $=id=>document.getElementById(id);
-const audio=$("sequenceAudio"),select=$("profileSelect"),yearbook=$("yearbookPhoto"),current=$("currentPhoto"),fallback=$("photoFallback");
-const fields={status:$("statusText"),elapsed:$("elapsedTime"),duration:$("durationTime"),progress:$("progressFill")};
+const audio=$("sequenceAudio");
+const select=$("profileSelect");
+const yearbook=$("yearbookPhoto");
+const video=$("aiVideo");
+const current=$("currentPhoto");
+const fallback=$("photoFallback");
+const flash=$("mediaFlash");
+const aiButton=$("showAiVideo");
+
+const fields={
+  status:$("statusText"),
+  elapsed:$("elapsedTime"),
+  duration:$("durationTime"),
+  progress:$("progressFill")
+};
+
 const JINGLE="audio/jingles/Used-to-Bees-Reunion-Countdown.mp3";
 
 boot();
 
 async function boot(){
   try{
-    const r=await fetch(`profiles.json?v=${Date.now()}`,{cache:"no-store"});
-    if(!r.ok)throw new Error(`profiles.json ${r.status}`);
-    profiles=await r.json();
+    const response=await fetch(`profiles.json?v=${Date.now()}`,{cache:"no-store"});
+    if(!response.ok)throw new Error(`profiles.json ${response.status}`);
+
+    profiles=await response.json();
     profiles.sort((a,b)=>a.name.localeCompare(b.name));
+
     const wanted=new URLSearchParams(location.search).get("id");
-    const found=profiles.findIndex(p=>p.id===wanted);
+    const found=profiles.findIndex(profile=>profile.id===wanted);
     currentIndex=found>=0?found:0;
-    profiles.forEach((p,i)=>select.add(new Option(`${p.name} — ${p.songTitle}`,i)));
+
+    profiles.forEach((profile,index)=>{
+      select.add(new Option(`${profile.name} — ${profile.songTitle}`,index));
+    });
+
     loadProfile(currentIndex);
-  }catch(e){console.error(e);setStatus("Profile data unavailable")}
+  }catch(error){
+    console.error(error);
+    setStatus("Profile data unavailable");
+  }
 }
 
 function loadProfile(index){
   stopSequence(false);
+
   currentIndex=(index+profiles.length)%profiles.length;
   currentProfile=profiles[currentIndex];
   select.value=String(currentIndex);
@@ -32,40 +61,57 @@ function loadProfile(index){
   $("yearStrip").textContent=currentProfile.year;
 
   const profileButton=$("profileButton");
-  const profileUrl=currentProfile.profileUrl||currentProfile.profileURL||currentProfile.classmateProfileUrl||"";
+  const profileUrl=
+    currentProfile.profileUrl||
+    currentProfile.profileURL||
+    currentProfile.classmateProfileUrl||
+    "";
+
   if(profileUrl){
     profileButton.href=profileUrl;
     profileButton.hidden=false;
-    profileButton.setAttribute("aria-label",`Open ${currentProfile.name}'s classmate profile`);
+    profileButton.setAttribute(
+      "aria-label",
+      `Open ${currentProfile.name}'s full classmate profile`
+    );
   }else{
     profileButton.hidden=true;
     profileButton.removeAttribute("href");
   }
 
-  loadPhotos();
-  showPhoto("yearbook");
+  loadMedia();
+  showMedia("yearbook");
   setStatus("Ready");
   updateProgress();
 
-  const u=new URL(location.href);
-  u.searchParams.set("id",currentProfile.id);
-  history.replaceState({},"",u);
+  const url=new URL(location.href);
+  url.searchParams.set("id",currentProfile.id);
+  history.replaceState({},"",url);
 }
 
-function loadPhotos(){
+function loadMedia(){
   fallback.hidden=true;
-  yearbook.style.display="";
-  current.style.display="";
-  yearbook.classList.add("portrait-visible");
-  current.classList.remove("portrait-visible");
+
+  [yearbook,video,current].forEach(element=>{
+    element.style.display="";
+    element.classList.remove("portrait-visible");
+  });
 
   const compactName=(currentProfile.name||"").replace(/[^A-Za-z0-9]/g,"");
+
   const configuredYearbook=
-    currentProfile.yearbookPhoto ||
-    (Array.isArray(currentProfile.photos) ? currentProfile.photos[0] : "");
+    currentProfile.yearbookPhoto||
+    (Array.isArray(currentProfile.photos)?currentProfile.photos[0]:"");
+
   const configuredCurrent=
-    currentProfile.currentPhoto ||
-    (Array.isArray(currentProfile.photos) ? currentProfile.photos[1] : "");
+    currentProfile.currentPhoto||
+    (Array.isArray(currentProfile.photos)?currentProfile.photos[1]:"");
+
+  const configuredVideo=
+    currentProfile.aiVideo||
+    currentProfile.videoFile||
+    currentProfile.aiVideoFile||
+    "";
 
   const yearbookCandidates=[
     configuredYearbook,
@@ -87,32 +133,47 @@ function loadPhotos(){
     `photos/current/${compactName}.PNG`
   ].filter(Boolean);
 
-  let yearbookLoaded=false;
-  let currentLoaded=false;
-
-  loadFirstWorking(yearbook,yearbookCandidates,()=>{
-    yearbookLoaded=true;
+  loadFirstWorkingImage(yearbook,yearbookCandidates,()=>{
     fallback.hidden=true;
   },()=>{
     yearbook.style.display="none";
-    if(!currentLoaded) fallback.hidden=false;
+    showFallbackIfNeeded();
   });
 
-  loadFirstWorking(current,currentCandidates,()=>{
-    currentLoaded=true;
+  loadFirstWorkingImage(current,currentCandidates,()=>{
     fallback.hidden=true;
   },()=>{
     current.style.display="none";
-    if(!yearbookLoaded) fallback.hidden=false;
+    showFallbackIfNeeded();
   });
 
   yearbook.alt=`${currentProfile.name} in 1977`;
   current.alt=`${currentProfile.name} today`;
   yearbook.style.objectPosition=currentProfile.yearbookPhotoPosition||"center 24%";
   current.style.objectPosition=currentProfile.currentPhotoPosition||"center 24%";
+
+  video.pause();
+  video.removeAttribute("src");
+  video.load();
+  video.muted=currentProfile.aiVideoMuted!==false;
+  video.volume=Number.isFinite(currentProfile.aiVideoVolume)
+    ? Math.max(0,Math.min(1,currentProfile.aiVideoVolume))
+    : 1;
+  video.style.objectPosition=currentProfile.aiVideoPosition||"center 24%";
+
+  if(configuredVideo){
+    video.src=new URL(configuredVideo,document.baseURI).href;
+    video.load();
+    aiButton.disabled=false;
+    aiButton.title="Play AI video";
+  }else{
+    video.style.display="none";
+    aiButton.disabled=true;
+    aiButton.title="No AI video is available for this classmate";
+  }
 }
 
-function loadFirstWorking(img,candidates,onSuccess,onFailure){
+function loadFirstWorkingImage(image,candidates,onSuccess,onFailure){
   let index=0;
 
   const tryNext=()=>{
@@ -123,67 +184,110 @@ function loadFirstWorking(img,candidates,onSuccess,onFailure){
 
     const candidate=candidates[index++];
     const url=new URL(candidate,document.baseURI);
-    url.searchParams.set("imgv","46");
+    url.searchParams.set("imgv","50");
 
-    img.onload=()=>{
-      img.style.display="";
+    image.onload=()=>{
+      image.style.display="";
       onSuccess();
     };
-
-    img.onerror=tryNext;
-    img.src=url.href;
+    image.onerror=tryNext;
+    image.src=url.href;
   };
 
   tryNext();
 }
 
-function showPhoto(which){
-  clearTimeout(photoTimer);
-  const today=which==="current";
-  yearbook.classList.toggle("portrait-visible",!today);
-  current.classList.toggle("portrait-visible",today);
-  $("showYearbook").classList.toggle("active",!today);
-  $("showCurrent").classList.toggle("active",today);
+function showFallbackIfNeeded(){
+  const noYearbook=yearbook.style.display==="none";
+  const noCurrent=current.style.display==="none";
+  const noVideo=!currentProfile.aiVideo;
+  fallback.hidden=!(noYearbook&&noCurrent&&noVideo);
+}
+
+function setActiveTab(which){
+  $("showYearbook").classList.toggle("active",which==="yearbook");
+  aiButton.classList.toggle("active",which==="video");
+  $("showCurrent").classList.toggle("active",which==="current");
+}
+
+function hideAllMedia(){
+  yearbook.classList.remove("portrait-visible");
+  video.classList.remove("portrait-visible");
+  current.classList.remove("portrait-visible");
+}
+
+function showMedia(which){
+  hideAllMedia();
+  setActiveTab(which);
+
+  if(which==="yearbook"){
+    video.pause();
+    yearbook.classList.add("portrait-visible");
+  }else if(which==="video"){
+    video.classList.add("portrait-visible");
+  }else{
+    video.pause();
+    current.classList.add("portrait-visible");
+  }
+}
+
+function relayFlash(){
+  flash.classList.remove("flash");
+  void flash.offsetWidth;
+  flash.classList.add("flash");
 }
 
 async function startSequence(){
   if(!currentProfile)return;
+
   stopSequence(false);
   runId+=1;
   const token=runId;
-  showPhoto("yearbook");
-  await playStage("jingle",JINGLE,"Reunion countdown jingle",token);
+
+  showMedia("yearbook");
+  await playAudioStage("jingle",JINGLE,"Reunion countdown jingle",token);
 }
 
-async function playStage(nextPhase,src,status,token){
+async function playAudioStage(nextPhase,source,status,token){
   if(token!==runId)return;
+
   phase=nextPhase;
-  audio.src=src;
+  audio.src=source;
   audio.load();
   setStatus(status);
+
   try{
     await audio.play();
-  }catch(e){
-    console.error(`Failed to play ${nextPhase}:`,src,e);
+  }catch(error){
+    console.error(`Failed to play ${nextPhase}:`,source,error);
     setStatus("Press Play to continue");
   }
 }
 
 audio.addEventListener("ended",async()=>{
   const token=runId;
+
   if(phase==="jingle"){
-    photoTimer=setTimeout(()=>showPhoto("current"),8000);
-    await playStage("dedication",currentProfile.dedicationFile,"Long-distance dedication",token);
+    await playAutomaticVideo(token);
     return;
   }
+
   if(phase==="dedication"){
-    clearTimeout(photoTimer);
-    showPhoto("current");
+    showMedia("current");
     setStatus("Changing selection");
     playKaChunkNonBlocking();
-    setTimeout(()=>playStage("song",currentProfile.songFile,"Now playing",token),350);
+
+    setTimeout(()=>{
+      playAudioStage(
+        "song",
+        currentProfile.songFile,
+        "Now playing",
+        token
+      );
+    },350);
     return;
   }
+
   if(phase==="song"){
     phase="finished";
     setStatus("Finished");
@@ -191,64 +295,272 @@ audio.addEventListener("ended",async()=>{
   }
 });
 
+async function playAutomaticVideo(token){
+  if(token!==runId)return;
+
+  const videoSource=
+    currentProfile.aiVideo||
+    currentProfile.videoFile||
+    currentProfile.aiVideoFile||
+    "";
+
+  if(!videoSource){
+    await beginDedication(token);
+    return;
+  }
+
+  phase="video";
+  audio.pause();
+  relayFlash();
+  showMedia("video");
+  setStatus("AI video");
+
+  try{
+    video.currentTime=0;
+    await video.play();
+  }catch(error){
+    console.warn("AI video could not autoplay; continuing to dedication.",error);
+    await beginDedication(token);
+  }
+}
+
+video.addEventListener("ended",async()=>{
+  if(phase!=="video"&&phase!=="manualVideo")return;
+
+  if(phase==="manualVideo"){
+    showMedia("current");
+    setStatus("Ready");
+    phase="idle";
+    return;
+  }
+
+  await beginDedication(runId);
+});
+
+video.addEventListener("error",async()=>{
+  console.error("Video error:",video.src,video.error);
+
+  if(phase==="video"){
+    await beginDedication(runId);
+  }else{
+    aiButton.disabled=true;
+    setStatus("AI video unavailable");
+  }
+});
+
+async function beginDedication(token){
+  if(token!==runId)return;
+
+  relayFlash();
+  showMedia("current");
+
+  await playAudioStage(
+    "dedication",
+    currentProfile.dedicationFile,
+    "Long-distance dedication",
+    token
+  );
+}
+
 async function playOrPause(){
-  if(phase==="idle"||phase==="finished"){startSequence();return}
+  if(phase==="idle"||phase==="finished"){
+    startSequence();
+    return;
+  }
+
+  if(phase==="video"||phase==="manualVideo"){
+    if(video.paused){
+      try{
+        await video.play();
+        setStatus("AI video");
+      }catch(error){
+        console.error(error);
+        setStatus("Press Play again");
+      }
+    }else{
+      video.pause();
+      setStatus("Paused");
+    }
+    return;
+  }
+
   if(audio.paused){
-    try{await audio.play();setStatus(phase==="song"?"Now playing":phase==="dedication"?"Long-distance dedication":"Reunion countdown jingle")}
-    catch(e){console.error(e);setStatus("Press Play again")}
+    try{
+      await audio.play();
+      setStatus(
+        phase==="song"?"Now playing":
+        phase==="dedication"?"Long-distance dedication":
+        "Reunion countdown jingle"
+      );
+    }catch(error){
+      console.error(error);
+      setStatus("Press Play again");
+    }
   }else{
     audio.pause();
     setStatus("Paused");
   }
 }
 
+async function playManualVideo(){
+  const source=
+    currentProfile.aiVideo||
+    currentProfile.videoFile||
+    currentProfile.aiVideoFile||
+    "";
+
+  if(!source)return;
+
+  stopSequence(false);
+  runId+=1;
+  phase="manualVideo";
+  relayFlash();
+  showMedia("video");
+  setStatus("AI video");
+
+  try{
+    video.currentTime=0;
+    await video.play();
+  }catch(error){
+    console.error(error);
+    setStatus("Press AI Video again");
+  }
+}
+
+function showManualPhoto(which){
+  stopSequence(false);
+  phase="idle";
+  showMedia(which);
+  setStatus("Ready");
+}
+
 function stopSequence(show=true){
   runId+=1;
-  clearTimeout(photoTimer);
+
   audio.pause();
   audio.removeAttribute("src");
   audio.load();
+
+  video.pause();
+  try{video.currentTime=0}catch{}
+
   phase="idle";
   updateProgress();
+
   if(show)setStatus("Stopped");
 }
 
 function playKaChunkNonBlocking(){
   try{
-    const AC=window.AudioContext||window.webkitAudioContext;
-    if(!AC)return;
-    const ctx=new AC(),t=ctx.currentTime,g=ctx.createGain(),o=ctx.createOscillator();
-    g.gain.setValueAtTime(.0001,t);
-    g.gain.exponentialRampToValueAtTime(.5,t+.01);
-    g.gain.exponentialRampToValueAtTime(.0001,t+.28);
-    g.connect(ctx.destination);
-    o.type="triangle";
-    o.frequency.setValueAtTime(105,t);
-    o.frequency.exponentialRampToValueAtTime(48,t+.18);
-    o.connect(g);o.start(t);o.stop(t+.22);
-    setTimeout(()=>ctx.close(),400);
-  }catch(e){console.warn("Ka-chunk skipped",e)}
+    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContextClass)return;
+
+    const context=new AudioContextClass();
+    const time=context.currentTime;
+    const gain=context.createGain();
+    const oscillator=context.createOscillator();
+
+    gain.gain.setValueAtTime(.0001,time);
+    gain.gain.exponentialRampToValueAtTime(.5,time+.01);
+    gain.gain.exponentialRampToValueAtTime(.0001,time+.28);
+    gain.connect(context.destination);
+
+    oscillator.type="triangle";
+    oscillator.frequency.setValueAtTime(105,time);
+    oscillator.frequency.exponentialRampToValueAtTime(48,time+.18);
+    oscillator.connect(gain);
+    oscillator.start(time);
+    oscillator.stop(time+.22);
+
+    setTimeout(()=>context.close(),400);
+  }catch(error){
+    console.warn("Ka-chunk skipped",error);
+  }
 }
 
 function updateProgress(){
-  const c=audio.currentTime||0,d=audio.duration||0;
-  fields.elapsed.textContent=formatTime(c);
-  fields.duration.textContent=formatTime(d);
-  fields.progress.style.width=d?`${c/d*100}%`:"0%";
-}
-function setStatus(s){fields.status.textContent=String(s).toUpperCase()}
-function formatTime(s){const n=Math.max(0,Math.floor(Number.isFinite(s)?s:0));return `${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`}
+  if(phase==="video"||phase==="manualVideo"){
+    const currentTime=video.currentTime||0;
+    const duration=video.duration||0;
+    fields.elapsed.textContent=formatTime(currentTime);
+    fields.duration.textContent=formatTime(duration);
+    fields.progress.style.width=duration
+      ?`${currentTime/duration*100}%`
+      :"0%";
+    return;
+  }
 
-select.onchange=e=>loadProfile(Number(e.target.value));
-$("previousProfile").onclick=()=>loadProfile(currentIndex-1);
-$("nextProfile").onclick=()=>loadProfile(currentIndex+1);
-$("randomProfile").onclick=()=>{let i=currentIndex;while(i===currentIndex)i=Math.floor(Math.random()*profiles.length);loadProfile(i)};
-$("showYearbook").onclick=()=>showPhoto("yearbook");
-$("showCurrent").onclick=()=>showPhoto("current");
-$("playButton").onclick=playOrPause;
-$("pauseButton").onclick=()=>{audio.pause();setStatus("Paused")};
-$("restartButton").onclick=startSequence;
-$("stopButton").onclick=()=>stopSequence(true);
+  const currentTime=audio.currentTime||0;
+  const duration=audio.duration||0;
+  fields.elapsed.textContent=formatTime(currentTime);
+  fields.duration.textContent=formatTime(duration);
+  fields.progress.style.width=duration
+    ?`${currentTime/duration*100}%`
+    :"0%";
+}
+
+function setStatus(text){
+  fields.status.textContent=String(text).toUpperCase();
+}
+
+function formatTime(seconds){
+  const safe=Math.max(
+    0,
+    Math.floor(Number.isFinite(seconds)?seconds:0)
+  );
+  return `${Math.floor(safe/60)}:${String(safe%60).padStart(2,"0")}`;
+}
+
+select.addEventListener("change",event=>{
+  loadProfile(Number(event.target.value));
+});
+
+$("previousProfile").addEventListener("click",()=>{
+  loadProfile(currentIndex-1);
+});
+
+$("nextProfile").addEventListener("click",()=>{
+  loadProfile(currentIndex+1);
+});
+
+$("randomProfile").addEventListener("click",()=>{
+  if(profiles.length<2)return;
+  let index=currentIndex;
+  while(index===currentIndex){
+    index=Math.floor(Math.random()*profiles.length);
+  }
+  loadProfile(index);
+});
+
+$("showYearbook").addEventListener("click",()=>{
+  showManualPhoto("yearbook");
+});
+
+aiButton.addEventListener("click",playManualVideo);
+
+$("showCurrent").addEventListener("click",()=>{
+  showManualPhoto("current");
+});
+
+$("playButton").addEventListener("click",playOrPause);
+
+$("pauseButton").addEventListener("click",()=>{
+  if(phase==="video"||phase==="manualVideo"){
+    video.pause();
+  }else{
+    audio.pause();
+  }
+  setStatus("Paused");
+});
+
+$("restartButton").addEventListener("click",startSequence);
+$("stopButton").addEventListener("click",()=>stopSequence(true));
+
 audio.addEventListener("timeupdate",updateProgress);
 audio.addEventListener("loadedmetadata",updateProgress);
-audio.addEventListener("error",()=>console.error("Audio error:",audio.src,audio.error));
+audio.addEventListener("error",()=>{
+  console.error("Audio error:",audio.src,audio.error);
+});
+
+video.addEventListener("timeupdate",updateProgress);
+video.addEventListener("loadedmetadata",updateProgress);

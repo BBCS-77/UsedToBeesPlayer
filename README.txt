@@ -1,4 +1,4 @@
-USED TO BEES REUNION JUKEBOX v4.8 — CLASSMATE PROFILE BUTTON
+USED TO BEES REUNION JUKEBOX — VERSION 5 AI VIDEO
 
 Replace these root files:
 - index.html
@@ -6,36 +6,43 @@ Replace these root files:
 - player.js
 
 Do not change:
+- profiles.json
 - audio
 - photos
+- video
 
-Add this optional field to each profile in profiles.json:
+Automatic sequence:
+1. 1977 yearbook photo is displayed.
+2. Reunion countdown jingle plays.
+3. AI Video appears and plays.
+4. Current photo appears.
+5. Long-distance dedication plays.
+6. Ka-chunk.
+7. Favorite song plays.
 
-"profileUrl": "https://sites.google.com/view/YOUR-SITE/classmates/john-berry"
+Manual media buttons:
+- 1977
+- AI Video
+- Today
 
-Example:
+Required JSON field:
+"aiVideo": "video/JohnBerry.mp4"
 
-{
-  "id": "johnberry",
-  "name": "John Berry",
-  "songTitle": "Slow Ride",
-  "artist": "Foghat",
-  "year": 1975,
-  "dedicationFile": "audio/dedications/JohnBerry.mp3",
-  "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
-  "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
-  "currentPhoto": "photos/current/JohnBerry.jpg",
-  "profileUrl": "https://sites.google.com/view/YOUR-SITE/classmates/john-berry"
-}
+Optional JSON fields:
+"aiVideoMuted": true
+"aiVideoVolume": 1
+"aiVideoPosition": "center 24%"
 
-Behavior:
-- When profileUrl is present, a black button with yellow text appears beneath the left yellow classmate-name box.
-- Button text: Click to See Classmate Profile
-- The profile opens in a new browser tab, which allows the jukebox audio to continue playing in the original tab.
-- When profileUrl is omitted or blank, the button is hidden.
+The default is muted AI video for reliable browser playback. To hear a video's
+own audio, add:
+"aiVideoMuted": false
+
+If aiVideo is missing or blank, the AI Video button is disabled and the
+automatic sequence skips directly from the jingle to the current photo and
+dedication.
 
 Commit:
-Add classmate profile button
+Add AI video sequence to reunion jukebox
 
 Test:
-https://bbcs-77.github.io/UsedToBeesPlayer/?v=48
+https://bbcs-77.github.io/UsedToBeesPlayer/?v=50
