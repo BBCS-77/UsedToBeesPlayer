@@ -6,7 +6,9 @@
     "artist": "Foghat",
     "year": 1975,
     "dedicationFile": "audio/dedications/JohnBerry.mp3",
-    "songFile": "audio/songs/Foghat-Slow-Ride.mp3"
+    "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
+    "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
+    "currentPhoto": "photos/current/JohnBerry.jpg"
   },  
   {
     "id": "jimhill",
@@ -15,7 +17,9 @@
     "artist": "Boston",
     "year": 1978,
     "dedicationFile": "audio/dedications/JimHill.mp3",
-    "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3"
+    "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3",
+    "yearbookPhoto": "photos/yearbook/JimHill.jpg",
+    "currentPhoto": "photos/current/JimHill.jpg"
   },
   {
     "id": "jackhill",
@@ -24,7 +28,9 @@
     "artist": "Queen",
     "year": 1975,
     "dedicationFile": "audio/dedications/JackHill.mp3",
-    "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3"
+    "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3",
+    "yearbookPhoto": "photos/yearbook/JackHill.jpg",
+    "currentPhoto": "photos/current/JackHill.jpg"
   },
   {
     "id": "rosejaczynski",
@@ -33,7 +39,9 @@
     "artist": "Tony Orlando & Dawn",
     "year": 1973,
     "dedicationFile": "audio/dedications/RoseJaczynski.mp3",
-    "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3"
+    "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3",
+    "yearbookPhoto": "photos/yearbook/RoseJaczynski.jpg",
+    "currentPhoto": "photos/current/RoseJaczynski.jpg"
   },
   {
     "id": "loriivison",
@@ -42,7 +50,9 @@
     "artist": "Abba",
     "year": 1976,
     "dedicationFile": "audio/dedications/LoriIvison.mp3",
-    "songFile": "audio/songs/Abba-Dancing-Queen.mp3"
+    "songFile": "audio/songs/Abba-Dancing-Queen.mp3",
+    "yearbookPhoto": "photos/yearbook/LoriIvison.jpg",
+    "currentPhoto": "photos/current/LoriIvison.jpg"
   },
   {
     "id": "lauriesmith",
@@ -51,7 +61,9 @@
     "artist": "Don McLean",
     "year": 1971,
     "dedicationFile": "audio/dedications/LaurieSmith.mp3",
-    "songFile": "audio/songs/Don McLean-American-Pie.mp3"
+    "songFile": "audio/songs/Don McLean-American-Pie.mp3",
+    "yearbookPhoto": "photos/yearbook/LaurieSmith.jpg",
+    "currentPhoto": "photos/current/LaurieSmith.jpg"
   },
   {
     "id": "rickbezon",
@@ -60,7 +72,9 @@
     "artist": "The Eagles",
     "year": 1979,
     "dedicationFile": "audio/dedications/RickBezon.mp3",
-    "songFile": "audio/songs/The Eagles-The Long-Run.mp3"
+    "songFile": "audio/songs/The Eagles-The Long-Run.mp3",
+    "yearbookPhoto": "photos/yearbook/RickBezon.jpg",
+    "currentPhoto": "photos/current/RickBezon.jpg"
   },
   {
     "id": "jeanettehollis",
@@ -69,7 +83,9 @@
     "artist": "Lynyrd Skynyrd",
     "year": 1973,
     "dedicationFile": "audio/dedications/JeanetteHollis.mp3",
-    "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3"
+    "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3",
+    "yearbookPhoto": "photos/yearbook/JeanetteHollis.jpg",
+    "currentPhoto": "photos/current/JeanetteHollis.jpg"
   },
   {
     "id": "teresakowalik",
@@ -78,7 +94,9 @@
     "artist": "The Doobie Brothers",
     "year": 1974,
     "dedicationFile": "audio/dedications/TeresaKowalik.mp3",
-    "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3"
+    "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3",
+    "yearbookPhoto": "photos/yearbook/TeresaKowalik.jpg",
+     "currentPhoto": "photos/current/TeresaKowalik.jpg"
   },
   {
     "id": "sandyreese",
@@ -87,7 +105,9 @@
     "artist": "Don McLean",
     "year": 1971,
     "dedicationFile": "audio/dedications/SandyReese.mp3",
-    "songFile": "audio/songs/Don McLean-American-Pie.mp3"
+    "songFile": "audio/songs/Don McLean-American-Pie.mp3",
+    "yearbookPhoto": "photos/yearbook/SandyReese.jpg",
+    "currentPhoto": "photos/current/SandyReese.jpg"
   },
   {
     "id": "chrisglazier",
@@ -96,7 +116,9 @@
     "artist": "Elton John",
     "year": 1971,
     "dedicationFile": "audio/dedications/ChrisGlazier.mp3",
-    "songFile": "audio/songs/Elton John-Tiny-Dancer.mp3"
+    "songFile": "audio/songs/Elton John-Tiny-Dancer.mp3",
+    "yearbookPhoto": "photos/yearbook/ChrisGlazier.jpg",
+    "currentPhoto": "photos/current/ChrisGlazier.jpg"
   },
   {
     "id": "bobmullen",
@@ -105,6 +127,8 @@
     "artist": "Kansas",
     "year": 1976,
     "dedicationFile": "audio/dedications/BobMullen.mp3",
-    "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3"
+    "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3",
+    "yearbookPhoto": "photos/yearbook/BobMullen.jpg",
+    "currentPhoto": "photos/current/BobMullen.jpeg"
   }
 ]
