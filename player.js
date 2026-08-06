@@ -31,6 +31,17 @@ function loadProfile(index){
   $("artistStrip").textContent=currentProfile.artist;
   $("yearStrip").textContent=currentProfile.year;
 
+  const profileButton=$("profileButton");
+  const profileUrl=currentProfile.profileUrl||currentProfile.profileURL||currentProfile.classmateProfileUrl||"";
+  if(profileUrl){
+    profileButton.href=profileUrl;
+    profileButton.hidden=false;
+    profileButton.setAttribute("aria-label",`Open ${currentProfile.name}'s classmate profile`);
+  }else{
+    profileButton.hidden=true;
+    profileButton.removeAttribute("href");
+  }
+
   loadPhotos();
   showPhoto("yearbook");
   setStatus("Ready");

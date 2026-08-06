@@ -620,3 +620,48 @@ select:focus-visible{
     line-height:1.02;
   }
 }
+
+
+/* v4.8 — classmate profile button */
+.profile-button{
+  display:grid;
+  place-items:center;
+  min-height:58px;
+  margin-top:10px;
+  padding:9px 8px;
+  border:4px solid #222;
+  border-radius:12px;
+  background:linear-gradient(#191715,#050504);
+  color:#e7c477;
+  box-shadow:inset 0 0 0 2px #92734a;
+  text-align:center;
+  text-decoration:none;
+  font-size:.68rem;
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:.04em;
+}
+
+.profile-button:hover{
+  color:#ffd963;
+  background:linear-gradient(#2b2722,#090807);
+}
+
+.profile-button:focus-visible{
+  outline:3px solid #fff2a6;
+  outline-offset:2px;
+}
+
+.profile-button[hidden]{
+  display:none!important;
+}
+
+@media(max-width:560px){
+  .profile-button{
+    min-height:48px;
+    margin-top:7px;
+    padding:6px 3px;
+    border-width:2px;
+    font-size:.52rem;
+  }
+}
