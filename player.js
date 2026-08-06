@@ -49,25 +49,85 @@ function loadPhotos(){
   fallback.hidden=true;
   yearbook.style.display="";
   current.style.display="";
+  yearbook.classList.add("portrait-visible");
+  current.classList.remove("portrait-visible");
 
-  let failed=0;
-  const failedOne=img=>{
-    img.style.display="none";
-    failed+=1;
-    if(failed>=2)fallback.hidden=false;
-  };
+  const compactName=(currentProfile.name||"").replace(/[^A-Za-z0-9]/g,"");
+  const configuredYearbook=
+    currentProfile.yearbookPhoto ||
+    (Array.isArray(currentProfile.photos) ? currentProfile.photos[0] : "");
+  const configuredCurrent=
+    currentProfile.currentPhoto ||
+    (Array.isArray(currentProfile.photos) ? currentProfile.photos[1] : "");
 
-  yearbook.onload=()=>{yearbook.style.display="";fallback.hidden=true};
-  current.onload=()=>{current.style.display="";fallback.hidden=true};
-  yearbook.onerror=()=>failedOne(yearbook);
-  current.onerror=()=>failedOne(current);
+  const yearbookCandidates=[
+    configuredYearbook,
+    `photos/yearbook/${compactName}.jpg`,
+    `photos/yearbook/${compactName}.jpeg`,
+    `photos/yearbook/${compactName}.png`,
+    `photos/yearbook/${compactName}.JPG`,
+    `photos/yearbook/${compactName}.JPEG`,
+    `photos/yearbook/${compactName}.PNG`
+  ].filter(Boolean);
 
-  yearbook.src=currentProfile.yearbookPhoto||"";
-  current.src=currentProfile.currentPhoto||currentProfile.yearbookPhoto||"";
+  const currentCandidates=[
+    configuredCurrent,
+    `photos/current/${compactName}.jpg`,
+    `photos/current/${compactName}.jpeg`,
+    `photos/current/${compactName}.png`,
+    `photos/current/${compactName}.JPG`,
+    `photos/current/${compactName}.JPEG`,
+    `photos/current/${compactName}.PNG`
+  ].filter(Boolean);
+
+  let yearbookLoaded=false;
+  let currentLoaded=false;
+
+  loadFirstWorking(yearbook,yearbookCandidates,()=>{
+    yearbookLoaded=true;
+    fallback.hidden=true;
+  },()=>{
+    yearbook.style.display="none";
+    if(!currentLoaded) fallback.hidden=false;
+  });
+
+  loadFirstWorking(current,currentCandidates,()=>{
+    currentLoaded=true;
+    fallback.hidden=true;
+  },()=>{
+    current.style.display="none";
+    if(!yearbookLoaded) fallback.hidden=false;
+  });
+
   yearbook.alt=`${currentProfile.name} in 1977`;
   current.alt=`${currentProfile.name} today`;
   yearbook.style.objectPosition=currentProfile.yearbookPhotoPosition||"center 24%";
   current.style.objectPosition=currentProfile.currentPhotoPosition||"center 24%";
+}
+
+function loadFirstWorking(img,candidates,onSuccess,onFailure){
+  let index=0;
+
+  const tryNext=()=>{
+    if(index>=candidates.length){
+      onFailure();
+      return;
+    }
+
+    const candidate=candidates[index++];
+    const url=new URL(candidate,document.baseURI);
+    url.searchParams.set("imgv","46");
+
+    img.onload=()=>{
+      img.style.display="";
+      onSuccess();
+    };
+
+    img.onerror=tryNext;
+    img.src=url.href;
+  };
+
+  tryNext();
 }
 
 function showPhoto(which){
