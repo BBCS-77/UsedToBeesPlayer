@@ -19,7 +19,7 @@
     "dedicationFile": "audio/dedications/JimHill.mp3",
     "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3",
     "yearbookPhoto": "photos/yearbook/JimHill.jpg",
-    "currentPhoto": "photos/current/JimHill.jpg"
+    "currentPhoto": "photos/current/JimHill.jpeg"
   },
   {
     "id": "jackhill",
@@ -30,7 +30,7 @@
     "dedicationFile": "audio/dedications/JackHill.mp3",
     "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3",
     "yearbookPhoto": "photos/yearbook/JackHill.jpg",
-    "currentPhoto": "photos/current/JackHill.jpg"
+    "currentPhoto": "photos/current/JackHill.JPG"
   },
   {
     "id": "rosejaczynski",
@@ -96,7 +96,7 @@
     "dedicationFile": "audio/dedications/TeresaKowalik.mp3",
     "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3",
     "yearbookPhoto": "photos/yearbook/TeresaKowalik.jpg",
-     "currentPhoto": "photos/current/TeresaKowalik.jpg"
+    "currentPhoto": "photos/current/TeresaKowalik.png"
   },
   {
     "id": "sandyreese",
