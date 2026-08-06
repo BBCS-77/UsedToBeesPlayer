@@ -31,10 +31,8 @@ function loadProfile(index){
   fields.artist.textContent=currentProfile.artist;
   fields.year.textContent=currentProfile.year;
   $("activeNameLeft").textContent=currentProfile.name;
-  $("previousName").textContent=profiles[(currentIndex-1+profiles.length)%profiles.length].name;
-  $("nextName").textContent=profiles[(currentIndex+1)%profiles.length].name;
-  $("artistStrip").textContent=currentProfile.artist;
   $("songStrip").textContent=currentProfile.songTitle;
+  $("artistStrip").textContent=currentProfile.artist;
   $("yearStrip").textContent=currentProfile.year;
 
   loadPhotos();

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
   <title>Used to Bees Reunion Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=44">
+  <link rel="stylesheet" href="styles.css?v=45">
 </head>
 <body>
 <main class="app">
@@ -33,10 +33,9 @@
 
     <div class="display-grid">
       <aside class="info-column left-info">
-        <div class="yellow-card">
-          <span id="previousName"></span>
+        <div class="yellow-card person-card">
+          <div class="card-label">CLASSMATE</div>
           <strong id="activeNameLeft"></strong>
-          <span id="nextName"></span>
         </div>
       </aside>
 
@@ -56,9 +55,10 @@
       </section>
 
       <aside class="info-column right-info">
-        <div class="yellow-card">
-          <span id="artistStrip"></span>
+        <div class="yellow-card song-card">
+          <div class="card-label">FAVORITE SONG</div>
           <strong id="songStrip"></strong>
+          <span id="artistStrip"></span>
           <span id="yearStrip"></span>
         </div>
 
@@ -97,6 +97,6 @@
   <audio id="sequenceAudio" preload="metadata"></audio>
 </main>
 
-<script src="player.js?v=44"></script>
+<script src="player.js?v=45"></script>
 </body>
 </html>

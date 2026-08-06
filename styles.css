@@ -552,3 +552,71 @@ select:focus-visible{
     font-size:.58rem;
   }
 }
+
+
+/* v4.5 — restore the intended yellow information cards */
+.selector-deck{
+  margin-top:18px;
+}
+
+.yellow-card .card-label{
+  padding:5px 4px 7px;
+  border-bottom:1px solid #825f18;
+  color:#5b101c;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-align:center;
+}
+
+.person-card{
+  display:grid;
+  align-content:start;
+  min-height:112px;
+}
+
+.person-card strong{
+  display:grid;
+  place-items:center;
+  min-height:67px;
+  border-bottom:0;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  font-size:clamp(.88rem,2.2vw,1.18rem);
+}
+
+.song-card strong{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  line-height:1.05;
+}
+
+.song-card span{
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:560px){
+  .selector-deck{
+    margin-top:14px;
+  }
+
+  .yellow-card .card-label{
+    padding:3px 1px 4px;
+    font-size:.43rem;
+  }
+
+  .person-card{
+    min-height:82px;
+  }
+
+  .person-card strong{
+    min-height:50px;
+    font-size:.61rem;
+    padding:4px 1px;
+  }
+
+  .song-card strong{
+    line-height:1.02;
+  }
+}
