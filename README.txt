@@ -1,23 +1,41 @@
-USED TO BEES REUNION JUKEBOX v4.6 — PHOTO LOADER FIX
+USED TO BEES REUNION JUKEBOX v4.8 — CLASSMATE PROFILE BUTTON
 
-Replace:
+Replace these root files:
 - index.html
+- styles.css
 - player.js
 
-styles.css may remain unchanged from v4.5.
+Do not change:
+- audio
+- photos
 
-The new photo loader:
-- Uses yearbookPhoto/currentPhoto when present.
-- Also supports a photos array.
-- Tries JPG, JPEG, PNG, and uppercase extensions automatically.
-- Builds full URLs relative to the GitHub Pages site.
-- Adds a cache-busting image parameter.
-- Falls back to filenames based on the classmate name.
+Add this optional field to each profile in profiles.json:
 
-Do not change profiles.json, audio, or photos.
+"profileUrl": "https://sites.google.com/view/YOUR-SITE/classmates/john-berry"
+
+Example:
+
+{
+  "id": "johnberry",
+  "name": "John Berry",
+  "songTitle": "Slow Ride",
+  "artist": "Foghat",
+  "year": 1975,
+  "dedicationFile": "audio/dedications/JohnBerry.mp3",
+  "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
+  "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
+  "currentPhoto": "photos/current/JohnBerry.jpg",
+  "profileUrl": "https://sites.google.com/view/YOUR-SITE/classmates/john-berry"
+}
+
+Behavior:
+- When profileUrl is present, a black button with yellow text appears beneath the left yellow classmate-name box.
+- Button text: Click to See Classmate Profile
+- The profile opens in a new browser tab, which allows the jukebox audio to continue playing in the original tab.
+- When profileUrl is omitted or blank, the button is hidden.
 
 Commit:
-Fix jukebox photo loading
+Add classmate profile button
 
 Test:
-https://bbcs-77.github.io/UsedToBeesPlayer/?v=46
+https://bbcs-77.github.io/UsedToBeesPlayer/?v=48
