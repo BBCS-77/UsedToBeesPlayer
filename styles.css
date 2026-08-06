@@ -665,3 +665,16 @@ select:focus-visible{
     font-size:.52rem;
   }
 }
+
+
+/* v4.8.1 profile button tweak */
+.profile-button{
+  font-size:.82rem !important;
+  line-height:1.2;
+}
+
+@media(max-width:560px){
+  .profile-button{
+    font-size:.66rem !important;
+  }
+}
