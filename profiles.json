@@ -9,7 +9,8 @@
     "songFile": "audio/songs/Foghat-Slow-Ride.mp3",
     "yearbookPhoto": "photos/yearbook/JohnBerry.jpg",
     "currentPhoto": "photos/current/JohnBerry.jpg",
-    "profileURL": "https://www.bbcs77.org/classmates/john-berry/john-berry-update"
+    "profileURL": "https://www.bbcs77.org/classmates/john-berry/john-berry-update",
+    "aiVideo": "video/JohnBerry.mp4"
   },  
   {
     "id": "jimhill",
@@ -20,7 +21,8 @@
     "dedicationFile": "audio/dedications/JimHill.mp3",
     "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3",
     "yearbookPhoto": "photos/yearbook/JimHill.jpg",
-    "currentPhoto": "photos/current/JimHill.jpeg"
+    "currentPhoto": "photos/current/JimHill.jpeg",
+    "aiVideo": "video/JimHill.mp4"
   },
   {
     "id": "jackhill",
@@ -31,7 +33,8 @@
     "dedicationFile": "audio/dedications/JackHill.mp3",
     "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3",
     "yearbookPhoto": "photos/yearbook/JackHill.jpg",
-    "currentPhoto": "photos/current/JackHill.JPG"
+    "currentPhoto": "photos/current/JackHill.JPG",
+    "aiVideo": "video/JackHill.mp4"
   },
   {
     "id": "rosejaczynski",
@@ -42,7 +45,8 @@
     "dedicationFile": "audio/dedications/RoseJaczynski.mp3",
     "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3",
     "yearbookPhoto": "photos/yearbook/RoseJaczynski.jpg",
-    "currentPhoto": "photos/current/RoseJaczynski.jpg"
+    "currentPhoto": "photos/current/RoseJaczynski.jpg",
+    "aiVideo": "video/RoseJaczynski.mp4"
   },
   {
     "id": "loriivison",
@@ -53,7 +57,8 @@
     "dedicationFile": "audio/dedications/LoriIvison.mp3",
     "songFile": "audio/songs/Abba-Dancing-Queen.mp3",
     "yearbookPhoto": "photos/yearbook/LoriIvison.jpg",
-    "currentPhoto": "photos/current/LoriIvison.jpg"
+    "currentPhoto": "photos/current/LoriIvison.jpg",
+    "aiVideo": "video/LoriIvison.mp4"
   },
   {
     "id": "lauriesmith",
@@ -64,7 +69,8 @@
     "dedicationFile": "audio/dedications/LaurieSmith.mp3",
     "songFile": "audio/songs/Don McLean-American-Pie.mp3",
     "yearbookPhoto": "photos/yearbook/LaurieSmith.jpg",
-    "currentPhoto": "photos/current/LaurieSmith.jpg"
+    "currentPhoto": "photos/current/LaurieSmith.jpg",
+    "aiVideo": "video/LauriSmith.mp4"
   },
   {
     "id": "rickbezon",
@@ -75,7 +81,8 @@
     "dedicationFile": "audio/dedications/RickBezon.mp3",
     "songFile": "audio/songs/The Eagles-The Long-Run.mp3",
     "yearbookPhoto": "photos/yearbook/RickBezon.jpg",
-    "currentPhoto": "photos/current/RickBezon.jpg"
+    "currentPhoto": "photos/current/RickBezon.jpg",
+    "aiVideo": "video/RickBezon.mp4"
   },
   {
     "id": "jeanettehollis",
@@ -86,7 +93,8 @@
     "dedicationFile": "audio/dedications/JeanetteHollis.mp3",
     "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3",
     "yearbookPhoto": "photos/yearbook/JeanetteHollis.jpg",
-    "currentPhoto": "photos/current/JeanetteHollis.jpg"
+    "currentPhoto": "photos/current/JeanetteHollis.jpg",
+    "aiVideo": "video/JeanetteHollis.mp4"
   },
   {
     "id": "teresakowalik",
@@ -97,7 +105,8 @@
     "dedicationFile": "audio/dedications/TeresaKowalik.mp3",
     "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3",
     "yearbookPhoto": "photos/yearbook/TeresaKowalik.jpg",
-    "currentPhoto": "photos/current/TeresaKowalik.png"
+    "currentPhoto": "photos/current/TeresaKowalik.png",
+    "aiVideo": "video/TeresaKowalik.mp4"
   },
   {
     "id": "sandyreese",
@@ -108,7 +117,8 @@
     "dedicationFile": "audio/dedications/SandyReese.mp3",
     "songFile": "audio/songs/Don McLean-American-Pie.mp3",
     "yearbookPhoto": "photos/yearbook/SandyReese.jpg",
-    "currentPhoto": "photos/current/SandyReese.jpg"
+    "currentPhoto": "photos/current/SandyReese.jpg",
+    "aiVideo": "video/SandyReese.mp4"
   },
   {
     "id": "chrisglazier",
@@ -119,7 +129,8 @@
     "dedicationFile": "audio/dedications/ChrisGlazier.mp3",
     "songFile": "audio/songs/Elton John-Tiny-Dancer.mp3",
     "yearbookPhoto": "photos/yearbook/ChrisGlazier.jpg",
-    "currentPhoto": "photos/current/ChrisGlazier.jpg"
+    "currentPhoto": "photos/current/ChrisGlazier.jpg",
+    "aiVideo": "video/ChrisGlazier.mp4"
   },
   {
     "id": "bobmullen",
@@ -130,6 +141,7 @@
     "dedicationFile": "audio/dedications/BobMullen.mp3",
     "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3",
     "yearbookPhoto": "photos/yearbook/BobMullen.jpg",
-    "currentPhoto": "photos/current/BobMullen.jpeg"
+    "currentPhoto": "photos/current/BobMullen.jpeg",
+    "aiVideo": "video/BobMullen.mp4"
   }
 ]
