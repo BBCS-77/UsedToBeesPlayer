@@ -155,7 +155,7 @@ function loadMedia(){
   video.pause();
   video.removeAttribute("src");
   video.load();
-  video.muted=currentProfile.aiVideoMuted!==false;
+  video.muted = false;
   video.volume=Number.isFinite(currentProfile.aiVideoVolume)
     ? Math.max(0,Math.min(1,currentProfile.aiVideoVolume))
     : 1;
