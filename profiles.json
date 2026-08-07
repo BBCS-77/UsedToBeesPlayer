@@ -22,7 +22,7 @@
     "songFile": "audio/songs/Boston-More-Than-a-Feeling.mp3",
     "yearbookPhoto": "photos/yearbook/JimHill.jpg",
     "currentPhoto": "photos/current/JimHill.jpeg",
-    "profileURL": "https://www.bbcs77.org/classmates/jim-hill/jim-hill-update"
+    "profileURL": "https://www.bbcs77.org/classmates/jim-hill/jim-hill-update",
     "aiVideo": "video/JimHill.mp4"
   },
   {
@@ -35,6 +35,7 @@
     "songFile": "audio/songs/Queen-Bohemian-Rhapsody.mp3",
     "yearbookPhoto": "photos/yearbook/JackHill.jpg",
     "currentPhoto": "photos/current/JackHill.JPG",
+    "profileURL": "https://www.bbcs77.org/classmates/jack-hill/jack-hill-update"
     "aiVideo": "video/JackHill.mp4"
   },
   {
