@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
   <title>Used to Bees Reunion Jukebox</title>
-  <link rel="stylesheet" href="styles.css?v=50">
+  <link rel="stylesheet" href="styles.css?v=51">
 </head>
 <body>
 <main class="app">
@@ -46,6 +46,18 @@
            hidden>
           Click to See Full Profile
         </a>
+
+        <div class="status-card">
+          <div class="status-label">PLAYING:</div>
+          <div id="statusText" class="status">READY</div>
+          <div class="progress-row">
+            <span id="elapsedTime">0:00</span>
+            <div class="progress-track">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <span id="durationTime">0:00</span>
+          </div>
+        </div>
       </aside>
 
       <section class="center-console">
@@ -78,21 +90,7 @@
           <span id="yearStrip"></span>
         </div>
 
-        <div class="status-card">
-          <div class="status-label">PLAYING:</div>
-          <div id="statusText" class="status">READY</div>
-          <div class="progress-row">
-            <span id="elapsedTime">0:00</span>
-            <div class="progress-track">
-              <div id="progressFill" class="progress-fill"></div>
-            </div>
-            <span id="durationTime">0:00</span>
-          </div>
-        </div>
-      </aside>
-    </div>
-
-    <div class="transport-panel">
+        <div class="transport-panel">
       <button id="playButton" class="transport-button primary" type="button">
         <span class="transport-icon">▶</span><span>PLAY</span>
       </button>
@@ -107,12 +105,15 @@
       </button>
     </div>
 
+      </aside>
+    </div>
+
     <div class="bottom-chrome" aria-hidden="true"></div>
   </section>
 
   <audio id="sequenceAudio" preload="metadata"></audio>
 </main>
 
-<script src="player.js?v=50"></script>
+<script src="player.js?v=51"></script>
 </body>
 </html>

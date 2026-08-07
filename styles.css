@@ -734,3 +734,13 @@ select:focus-visible{
     font-size:.58rem;
   }
 }
+
+
+/* v5.1 — compact jukebox layout */
+.left-info .status-card{margin-top:10px}
+.right-info .transport-panel{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px;padding:7px;border-width:4px}
+.right-info .transport-button{min-height:54px;padding:5px 2px;border-width:3px;border-radius:9px;font-size:.68rem}
+.right-info .transport-icon{font-size:1.08rem}
+.bottom-chrome{margin-top:8px}
+@media(max-width:560px){.left-info .status-card{margin-top:7px}.right-info .transport-panel{gap:4px;margin-top:7px;padding:4px;border-width:2px}.right-info .transport-button{min-height:39px;padding:3px 1px;border-width:2px;border-radius:6px;font-size:.52rem}.right-info .transport-icon{font-size:.82rem}.bottom-chrome{margin-top:5px}}
+@media(max-width:390px){.right-info .transport-button{min-height:37px;font-size:.48rem}}
