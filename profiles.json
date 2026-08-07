@@ -48,6 +48,7 @@
     "songFile": "audio/songs/Tony Orlando & Dawn-Has-Anybody-Seen-My-Sweet-Gypsy-Rose.mp3",
     "yearbookPhoto": "photos/yearbook/RoseJaczynski.jpg",
     "currentPhoto": "photos/current/RoseJaczynski.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/rose-jaczynski/rose-jaczynski-update",
     "aiVideo": "video/RoseJaczynski.mp4"
   },
   {
@@ -60,6 +61,7 @@
     "songFile": "audio/songs/Abba-Dancing-Queen.mp3",
     "yearbookPhoto": "photos/yearbook/LoriIvison.jpg",
     "currentPhoto": "photos/current/LoriIvison.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/lori-ivison/lori-ivison-update",
     "aiVideo": "video/LoriIvison.mp4"
   },
  {
@@ -72,6 +74,7 @@
     "songFile": "audio/songs/Don McLean-American-Pie.mp3",
     "yearbookPhoto": "photos/yearbook/LaurieSmith.jpg",
     "currentPhoto": "photos/current/LaurieSmith.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/laurie-smith/laurie-smith-update",
     "aiVideo": "video/LaurieSmith.mp4"
   }, 
   {
@@ -84,6 +87,7 @@
     "songFile": "audio/songs/The Eagles-The Long-Run.mp3",
     "yearbookPhoto": "photos/yearbook/RickBezon.jpg",
     "currentPhoto": "photos/current/RickBezon.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/rick-bezon/rick-bezon-update",
     "aiVideo": "video/RickBezon.mp4"
   },
   {
@@ -96,6 +100,7 @@
     "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3",
     "yearbookPhoto": "photos/yearbook/JeanetteHollis.jpg",
     "currentPhoto": "photos/current/JeanetteHollis.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/jeanette-hollis/jeanette-hollis-update",
     "aiVideo": "video/JeanetteHollis.mp4"
   },
   {
@@ -108,6 +113,7 @@
     "songFile": "audio/songs/The Doobie Brothers-Black-Water.mp3",
     "yearbookPhoto": "photos/yearbook/TeresaKowalik.jpg",
     "currentPhoto": "photos/current/TeresaKowalik.png",
+    "profileURL": "https://www.bbcs77.org/classmates/teresa-kowalik/teresa=kowalik-update",
     "aiVideo": "video/TeresaKowalik.mp4"
   },
   {
@@ -120,6 +126,7 @@
     "songFile": "audio/songs/Don McLean-American-Pie.mp3",
     "yearbookPhoto": "photos/yearbook/SandyReese.jpg",
     "currentPhoto": "photos/current/SandyReese.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/sandy-reese/sandy-reese-update",
     "aiVideo": "video/SandyReese.mp4"
   },
   {
@@ -132,6 +139,7 @@
     "songFile": "audio/songs/Elton John-Tiny-Dancer.mp3",
     "yearbookPhoto": "photos/yearbook/ChrisGlazier.jpg",
     "currentPhoto": "photos/current/ChrisGlazier.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/chris-glazier/chris-glazier-update",
     "aiVideo": "video/ChrisGlazier.mp4"
   },
   {
@@ -144,6 +152,7 @@
     "songFile": "audio/songs/Kansas-Carry-On-Wayward-Son.mp3",
     "yearbookPhoto": "photos/yearbook/BobMullen.jpg",
     "currentPhoto": "photos/current/BobMullen.jpeg",
+    "profileURL": "https://www.bbcs77.org/classmates/bob-mullen/bob-mullen-update",
     "aiVideo": "video/BobMullen.mp4"
   }
 ]
