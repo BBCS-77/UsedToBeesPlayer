@@ -744,3 +744,15 @@ select:focus-visible{
 .bottom-chrome{margin-top:8px}
 @media(max-width:560px){.left-info .status-card{margin-top:7px}.right-info .transport-panel{gap:4px;margin-top:7px;padding:4px;border-width:2px}.right-info .transport-button{min-height:39px;padding:3px 1px;border-width:2px;border-radius:6px;font-size:.52rem}.right-info .transport-icon{font-size:.82rem}.bottom-chrome{margin-top:5px}}
 @media(max-width:390px){.right-info .transport-button{min-height:37px;font-size:.48rem}}
+
+/* v5.2 — smaller media selector buttons */
+.three-tabs{
+  width:min(90%,240px);
+  gap:6px;
+}
+
+.three-tabs .photo-tab{
+  min-height:32px;
+  padding:3px 3px;
+  font-size:.68rem;
+}
