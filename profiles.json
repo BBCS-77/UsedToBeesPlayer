@@ -25,6 +25,19 @@
     "profileURL": "https://www.bbcs77.org/classmates/jim-hill/jim-hill-update",
     "aiVideo": "video/JimHill.mp4"
   },
+ {
+    "id": "elaineforsyth",
+    "name": "Elaine (Forsyth) Bezon",
+    "songTitle": "Best of my Love",
+    "artist": "The Eagles",
+    "year": 1974,
+    "dedicationFile": "audio/dedications/ElaineForsyth.mp3",
+    "songFile": "audio/songs/The-Eagles-Best-Of-My-Love.mp3",
+    "yearbookPhoto": "photos/yearbook/ElaineForsyth.jpg",
+    "currentPhoto": "photos/current/ElaineForsyth.jpeg",
+    "profileURL": "https://www.bbcs77.org/classmates/elaine-forsyth/eleaine-forsyth-update",
+    "aiVideo": "video/ElaineForsyth.mp4"
+  },
   {
     "id": "jackhill",
     "name": "Jack Hill",
