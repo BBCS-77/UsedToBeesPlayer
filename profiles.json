@@ -143,6 +143,19 @@
     "aiVideo": "video/SandyReese.mp4"
   },
   {
+    "id": "noahtime",
+    "name": "Noah Time",
+    "songTitle": "No Time",
+    "artist": "The Guess Who",
+    "year": 1970,
+    "dedicationFile": "audio/dedications/NoahTime.mp3",
+    "songFile": "audio/songs/The-Guess-Who-No-Time.mp3",
+    "yearbookPhoto": "photos/yearbook/NoahTime.jpg",
+    "currentPhoto": "photos/current/NoahTime.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/noah-time",
+    "aiVideo": "video/NoahTime.mp4"
+  },
+  {
     "id": "chrisglazier",
     "name": "Chris (Glazier) Mandel",
     "songTitle": "Tiny Dancer",
