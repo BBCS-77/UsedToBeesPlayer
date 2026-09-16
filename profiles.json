@@ -143,6 +143,19 @@
     "aiVideo": "video/SandyReese.mp4"
   },
   {
+    "id": "jackyleggo",
+    "name": "Jacky (Leggo) Smith",
+    "songTitle": "Life is a Rock",
+    "artist": "Reunion",
+    "year": 1974,
+    "dedicationFile": "audio/dedications/JackyLeggo.mp3",
+    "songFile": "audio/songs/Reunion-Life-Is-A-Rock.mp3",
+    "yearbookPhoto": "photos/yearbook/JackyLeggo.jpg",
+    "currentPhoto": "photos/current/JackyLeggo.jpeg",
+    "profileURL": "https://www.bbcs77.org/classmates/jacky-leggo/jacky-leggo-update",
+    "aiVideo": "video/JackLeggo.mp4"
+  },
+  {
     "id": "noahtime",
     "name": "Noah Time",
     "songTitle": "No Time",
