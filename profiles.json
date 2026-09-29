@@ -51,6 +51,32 @@
     "profileURL": "https://www.bbcs77.org/classmates/jack-hill/jack-hill-update",
     "aiVideo": "video/JackHill.mp4"
   },
+ {
+    "id": "cindybobzin",
+    "name": "Cindy (Bobzin) Berry",
+    "songTitle": "Takin Care of Business",
+    "artist": "BTO",
+    "year": 1974,
+    "dedicationFile": "audio/dedications/CindyBobzin.mp3",
+    "songFile": "audio/songs/BTO-Takin-Care-of-Business.mp3",
+    "yearbookPhoto": "photos/yearbook/CindyBobzin.jpg",
+    "currentPhoto": "photos/current/CindyBobzin.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/jack-hill/cindy-bobzin-update",
+    "aiVideo": "video/CindyBobzin.mp4"
+  },
+  {
+    "id": "briansmith",
+    "name": "Brian Smith",
+    "songTitle": "2112",
+    "artist": "Rush",
+    "year": 1976,
+    "dedicationFile": "audio/dedications/BrianSmith.mp3",
+    "songFile": "audio/songs/Rush-2112.mp3",
+    "yearbookPhoto": "photos/yearbook/BrianSmith.jpg",
+    "currentPhoto": "photos/current/BrianSmith.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/brian-smith/brian-smith-update",
+    "aiVideo": "video/BrianSmith.mp4"
+  },
   {
     "id": "rosejaczynski",
     "name": "Rose (Jaczynski) Baker ",
