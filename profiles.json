@@ -117,6 +117,18 @@
     "aiVideo": "video/LaurieSmith.mp4"
   }, 
   {
+    "id": "tomnesbitt",
+    "name": "Tom Nesbitt",
+    "songTitle": "Gotta Keep a Runnin'",
+    "artist": "The Godz",
+    "year": 1978,
+    "dedicationFile": "audio/dedications/TomNesbitt.mp3",
+    "songFile": "audio/songs/The-Godz-Gotta-Keep-a-Runnin.mp3",
+    "yearbookPhoto": "photos/yearbook/TomNesbitt.jpg",
+    "currentPhoto": "photos/current/TomNesbitt.png",
+    "profileURL": "https://www.bbcs77.org/classmates/tom-nesbitt/tom-nesbitt-update",
+    "aiVideo": "video/TomNesbitt.mp4"
+  },  {
     "id": "rickbezon",
     "name": "Rick Bezon",
     "songTitle": "The Long Run",
