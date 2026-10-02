@@ -65,6 +65,19 @@
     "aiVideo": "video/CindyBobzin.mp4"
   },
   {
+    "id": "sylviamills",
+    "name": "Sylvia (Mills) Karn",
+    "songTitle": "Time In A Bottle",
+    "artist": "Jim Croce",
+    "year": 1972,
+    "dedicationFile": "audio/dedications/SylviaMills.mp3",
+    "songFile": "audio/songs/Jim Croce-Time-In-A-Bottle.mp3",
+    "yearbookPhoto": "photos/yearbook/SylviaMills.jpg",
+    "currentPhoto": "photos/current/SylviaMills.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/sylvia-mills/sylvia-mills-update",
+    "aiVideo": "video/SylviaMills.mp4"
+  },
+  {
     "id": "briansmith",
     "name": "Brian Smith",
     "songTitle": "2112",
