@@ -52,6 +52,19 @@
     "aiVideo": "video/JackHill.mp4"
   },
  {
+    "id": "lennybrill",
+    "name": "Lenny Brill",
+    "songTitle": "Let Me Take You Home Tonight",
+    "artist": "Boston",
+    "year": 1976,
+    "dedicationFile": "audio/dedications/LennyBrill.mp3",
+    "songFile": "audio/songs/Boston-Let-Me-Take-You-Home-Tonight.mp3",
+    "yearbookPhoto": "photos/yearbook/LennyBrill.jpg",
+    "currentPhoto": "photos/current/LennyBrill.JPG",
+    "profileURL": "https://www.bbcs77.org/classmates/lenny-brill/lenny-brill-update",
+    "aiVideo": "video/LennyBrill.mp4"
+  },
+ {
     "id": "cindybobzin",
     "name": "Cindy (Bobzin) Berry",
     "songTitle": "Takin Care of Business",
