@@ -180,6 +180,19 @@
     "profileURL": "https://www.bbcs77.org/classmates/jeanette-hollis/jeanette-hollis-update",
     "aiVideo": "video/JeanetteHollis.mp4"
   },
+ {
+    "id": "jeffkeller",
+    "name": "Jake (Jeff) Keller",
+    "songTitle": "Free Bird",
+    "artist": "Lynyrd Skynyrd",
+    "year": 1973,
+    "dedicationFile": "audio/dedications/JeffKeller.mp3",
+    "songFile": "audio/songs/Lynyrd Skynyrd-Free-Bird.mp3",
+    "yearbookPhoto": "photos/yearbook/JeffKeller.jpg",
+    "currentPhoto": "photos/current/JakeKeller.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/jeff-keller/jeff-keller-update",
+    "aiVideo": "video/JeffKeller.mp4"
+  },
   {
     "id": "teresakowalik",
     "name": "Teresa (Kowalik) Wood",
