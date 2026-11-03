@@ -51,6 +51,19 @@
     "profileURL": "https://www.bbcs77.org/classmates/jack-hill/jack-hill-update",
     "aiVideo": "video/JackHill.mp4"
   },
+  {
+    "id": "maureendonahue",
+    "name": "Maureen (Donahue) Smith",
+    "songTitle": "We will Rock You",
+    "artist": "Queen",
+    "year": 1977,
+    "dedicationFile": "audio/dedications/MaureenDonahue.mp3",
+    "songFile": "audio/songs/Queen-We-Will-Rock-You.mp3",
+    "yearbookPhoto": "photos/yearbook/MaureenDonahue.jpg",
+    "currentPhoto": "photos/current/MaureenDonahue.JPG",
+    "profileURL": "https://www.bbcs77.org/classmates/maureen-donahue/maureen-donahue-update",
+    "aiVideo": "video/MaureenDonahue.mp4"
+  },
  {
     "id": "lennybrill",
     "name": "Lenny Brill",
