@@ -78,6 +78,19 @@
     "aiVideo": "video/MaureenDonahue.mp4"
   },
  {
+    "id": "mikerussell",
+    "name": "Mike Russell",
+    "songTitle": "We will Rock You",
+    "artist": "Queen",
+    "year": 1977,
+    "dedicationFile": "audio/dedications/MikeRussell.mp3",
+    "songFile": "audio/songs/Queen-We-Will-Rock-You.mp3",
+    "yearbookPhoto": "photos/yearbook/MikeRussell.jpg",
+    "currentPhoto": "photos/current/MikeRussell.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/mike-russell/mike-russell-update",
+    "aiVideo": "video/MikeRussell.mp4"
+  },
+  {
     "id": "lennybrill",
     "name": "Lenny Brill",
     "songTitle": "Let Me Take You Home Tonight",
