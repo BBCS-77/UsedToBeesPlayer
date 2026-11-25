@@ -13,6 +13,19 @@
     "aiVideo": "video/JohnBerry.mp4"
   },  
   {
+    "id": "joycehohn",
+    "name": "Joyce (Hohn) Winkstern",
+    "songTitle": "Come Sail Away",
+    "artist": "Styx",
+    "year": 1977,
+    "dedicationFile": "audio/dedications/JoyceHohn.mp3",
+    "songFile": "audio/songs/Styx-Come-Sail-Away.mp3",
+    "yearbookPhoto": "photos/yearbook/JoyceHohn.jpg",
+    "currentPhoto": "photos/current/ShyDiva.jpg",
+    "profileURL": "https://www.bbcs77.org/classmates/joyce-hohn/joyce-hohn-update",
+    "aiVideo": "video/JoyceHohn.mp4"
+  }, 
+  {
     "id": "jimhill",
     "name": "Jim Hill",
     "songTitle": "More Than a Feeling",
